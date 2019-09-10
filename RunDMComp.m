@@ -25,12 +25,12 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
             
             DM = DMComp(DS.Data, DistanceIndex);
             
-            FileName = strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)), '_distmatrix' ); 
-            ZipName = strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'.zip'); 
+            %FileName = strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)), '_distmatrix' ); 
+            %ZipName = strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'.zip'); 
            
-            dlmwrite( FileName, DM, 'delimiter', ',');
-            zip(ZipName,FileName);
-            delete strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)), '_distmatrix' );
+            dlmwrite( strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)), '.distmatrix' ), DM, 'delimiter', ',');
+            %zip(ZipName,FileName);
+            %delete strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)), '_distmatrix' );
             
         end
         
