@@ -1,7 +1,7 @@
 function DS = LoadUCRdataset(datasetname)
 
-    TRAIN = load(['/tartarus/DATASETS/UCR2018-127/',datasetname,'/',datasetname,'_TRAIN']);
-    TEST  = load(['/tartarus/DATASETS/UCR2018-127/',datasetname,'/',datasetname,'_TEST']);
+    TRAIN = load(['/tartarus/DATASETS/UCR2018/',datasetname,'/',datasetname,'_TRAIN']);
+    TEST  = load(['/tartarus/DATASETS/UCR2018/',datasetname,'/',datasetname,'_TEST']);
 
     %rng('default');
     %Train_numSamples = size(TRAIN,1);
