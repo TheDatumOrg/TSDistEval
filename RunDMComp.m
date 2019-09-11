@@ -4,7 +4,7 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
     Methods = [cellstr('ED'), 'SBD'];
 
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
-    dir_struct = dir('/tartarus/DATASETS/UCR2018/');
+    dir_struct = dir('./UCR2018-NEW/');
     Datasets = {dir_struct(3:130).name};
                      
     % Sort Datasets
