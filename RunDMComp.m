@@ -23,7 +23,7 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1)
             disp(['Dataset being processed: ', char(Datasets(i))]);
             DS = LoadUCRdataset(char(Datasets(i)));
             
-            DM = DMComp(DS.Data, DistanceIndex);
+            DM = DMComp(DS.Data, DistanceIndex, Param1);
 
             dlmwrite( strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1), '.distmatrix' ), DM, 'delimiter', ',');
 
