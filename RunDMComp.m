@@ -1,7 +1,7 @@
-function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
+function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1)
 
     % Distance Matrices for ED and SBD
-    Methods = [cellstr('ED'), 'SBD'];
+    Methods = [cellstr('ED'), 'SBD', 'MSM'];
 
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
     dir_struct = dir('./UCR2018-NEW/');
@@ -24,14 +24,9 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
             DS = LoadUCRdataset(char(Datasets(i)));
             
             DM = DMComp(DS.Data, DistanceIndex);
-            
-            %FileName = strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)), '_distmatrix' ); 
-            %ZipName = strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'.zip'); 
-           
-            dlmwrite( strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)), '.distmatrix' ), DM, 'delimiter', ',');
-            %zip(ZipName,FileName);
-            %delete strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)), '_distmatrix' );
-            
+
+            dlmwrite( strcat( '/tartarus/jopa/Projects/TSDistEval/code/DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1), '.distmatrix' ), DM, 'delimiter', ',');
+
         end
         
     end
