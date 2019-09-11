@@ -5,7 +5,7 @@ function DM = DMComp(X, DistanceIndex, Param1)
     DM = zeros(m,m);
 
     parfor i=1:m-1
-        disp(i);
+        %disp(i);
         rowi = X(i,:);
         tmpVector = zeros(1,m);
            for j=i+1:m
