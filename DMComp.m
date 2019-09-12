@@ -6,7 +6,7 @@ function DM = DMComp(X, DistanceIndex, Param1)
 
     % DTW warping window
     if DistanceIndex==4                   
-        Param1 = ceil(Param1/100 * TSLength); 
+        Param1 = floor(Param1/100 * TSLength); 
     end
                     
     parfor i=1:m-1
