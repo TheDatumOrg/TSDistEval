@@ -1,9 +1,14 @@
 function DM = DMComp(X, DistanceIndex, Param1)
 
-    [m, ~] = size(X);
+    [m, TSLength] = size(X);
 
     DM = zeros(m,m);
 
+    % DTW warping window
+    if DistanceIndex==4                   
+        Param1 = ceil(WindowPercent/100 * TSLength); 
+    end
+                    
     parfor i=1:m-1
         %disp(i);
         rowi = X(i,:);
@@ -16,6 +21,8 @@ function DM = DMComp(X, DistanceIndex, Param1)
                     tmpVector(j) = 1-max( NCCc(rowi,rowj));
                 elseif DistanceIndex==3
                     tmpVector(j) = MSM_mex(rowi,rowj,Param1);
+                elseif DistanceIndex==4
+                    tmpVector(j) = dtw(rowi,rowj,Param1);    
                 end
            end    
         DM(i,:) = tmpVector;   
@@ -34,6 +41,8 @@ function DM = DMComp(X, DistanceIndex, Param1)
             DM(i,i) = 1-max( NCCc(X(i,:),X(i,:)) );
         elseif DistanceIndex==3
             DM(i,i) = MSM_mex(X(i,:),X(i,:), Param1);
+        elseif DistanceIndex==3
+            DM(i,i) = dtw(X(i,:),X(i,:), Param1);
         end        
         
     end

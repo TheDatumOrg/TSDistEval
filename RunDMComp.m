@@ -1,7 +1,7 @@
 function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1)
 
     % Distance Matrices for ED and SBD
-    Methods = [cellstr('ED'), 'SBD', 'MSM'];
+    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW'];
 
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
     dir_struct = dir('./UCR2018-NEW/');
