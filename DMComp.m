@@ -25,6 +25,8 @@ function DM = DMComp(X, DistanceIndex, Param1)
                     tmpVector(j) = dtw(rowi,rowj,Param1);    
                 elseif DistanceIndex==5
                     tmpVector(j) = edr(rowi,rowj,Param1);  
+                elseif DistanceIndex==6
+                    tmpVector(j) = SINK(rowi,rowj,Param1);     
                 end
            end    
         DM(i,:) = tmpVector;   
@@ -47,6 +49,8 @@ function DM = DMComp(X, DistanceIndex, Param1)
             DM(i,i) = dtw(X(i,:),X(i,:), Param1);
         elseif DistanceIndex==5
             DM(i,i) = edr(X(i,:),X(i,:), Param1);
+        elseif DistanceIndex==6
+            DM(i,i) = SINK(X(i,:),X(i,:), Param1);    
         end        
         
     end
