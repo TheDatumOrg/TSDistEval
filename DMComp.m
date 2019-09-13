@@ -23,6 +23,8 @@ function DM = DMComp(X, DistanceIndex, Param1)
                     tmpVector(j) = MSM_mex(rowi,rowj,Param1);
                 elseif DistanceIndex==4
                     tmpVector(j) = dtw(rowi,rowj,Param1);    
+                elseif DistanceIndex==5
+                    tmpVector(j) = edr(rowi,rowj,Param1);  
                 end
            end    
         DM(i,:) = tmpVector;   
@@ -41,8 +43,10 @@ function DM = DMComp(X, DistanceIndex, Param1)
             DM(i,i) = 1-max( NCCc(X(i,:),X(i,:)) );
         elseif DistanceIndex==3
             DM(i,i) = MSM_mex(X(i,:),X(i,:), Param1);
-        elseif DistanceIndex==3
+        elseif DistanceIndex==4
             DM(i,i) = dtw(X(i,:),X(i,:), Param1);
+        elseif DistanceIndex==5
+            DM(i,i) = edr(X(i,:),X(i,:), Param1);
         end        
         
     end
