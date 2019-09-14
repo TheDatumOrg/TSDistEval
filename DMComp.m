@@ -7,8 +7,23 @@ function DM = DMComp(X, DistanceIndex, Param1)
     % DTW warping window
     if DistanceIndex==4                   
         Param1 = floor(Param1/100 * TSLength); 
+    elseif DistanceIndex==7
+        
+        dists = [];
+        for l=1:10
+             rng(l);
+             x = X(ceil(rand*DS.TrainInstancesCount),:);
+             y = X(ceil(rand*DS.TrainInstancesCount),:);
+             w = [];
+             for p=1:length(DS.Train(1,:))
+                 w(p)= ED(x(p),y(p));
+             end
+             dists=[dists,w];
+            end
+
+            Param1 = Param1*median(dists)*sqrt(length(DS.Train(1,:)));        
     end
-                    
+                        
     parfor i=1:m-1
         %disp(i);
         rowi = X(i,:);
@@ -26,7 +41,9 @@ function DM = DMComp(X, DistanceIndex, Param1)
                 elseif DistanceIndex==5
                     tmpVector(j) = edr(rowi,rowj,Param1);  
                 elseif DistanceIndex==6
-                    tmpVector(j) = SINK(rowi,rowj,Param1);     
+                    tmpVector(j) = SINK(rowi,rowj,Param1);    
+                elseif DistanceIndex==7
+                    tmpVector(j) = logGAK(rowi',rowj',Param1,0);
                 end
            end    
         DM(i,:) = tmpVector;   
@@ -50,7 +67,9 @@ function DM = DMComp(X, DistanceIndex, Param1)
         elseif DistanceIndex==5
             DM(i,i) = edr(X(i,:),X(i,:), Param1);
         elseif DistanceIndex==6
-            DM(i,i) = SINK(X(i,:),X(i,:), Param1);    
+            DM(i,i) = SINK(X(i,:),X(i,:), Param1);   
+        elseif DistanceIndex==7
+            DM(i,i) = logGAK(X(i,:)',X(i,:)',Param1,0);
         end        
         
     end
