@@ -12,14 +12,14 @@ function DM = DMComp(X, DistanceIndex, Param1)
         dists = [];
         for l=1:10
              rng(l);
-             x = X(ceil(rand*DS.TrainInstancesCount),:);
-             y = X(ceil(rand*DS.TrainInstancesCount),:);
+             x = X(ceil(rand*m),:);
+             y = X(ceil(rand*m),:);
              w = [];
              for p=1:length(DS.Train(1,:))
                  w(p)= ED(x(p),y(p));
              end
              dists=[dists,w];
-            end
+        end
 
             Param1 = Param1*median(dists)*sqrt(length(DS.Train(1,:)));        
     end
