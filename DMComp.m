@@ -21,7 +21,7 @@ function DM = DMComp(X, DistanceIndex, Param1)
              dists=[dists,w];
         end
 
-            Param1 = Param1*median(dists)*sqrt(length(DS.Train(1,:)));        
+            Param1 = Param1*median(dists)*sqrt(TSLength);        
     end
                         
     parfor i=1:m-1
