@@ -15,7 +15,7 @@ function DM = DMComp(X, DistanceIndex, Param1)
              x = X(ceil(rand*m),:);
              y = X(ceil(rand*m),:);
              w = [];
-             for p=1:length(DS.Train(1,:))
+             for p=1:TSLength
                  w(p)= ED(x(p),y(p));
              end
              dists=[dists,w];
