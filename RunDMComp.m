@@ -32,11 +32,11 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
                 
                 DM1 = DMComp(DS.Train, DistanceIndex, NewParameter);
 
-                dlmwrite( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)), 'Train.distmatrix' ), DM1, 'delimiter', ',');
+                dlmwrite( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)), '_Train.distmatrix' ), DM1, 'delimiter', ',');
                 
                 DM2 = DMComp_TestToTrain(DS.Test, DS.Train, DistanceIndex, NewParameter);
 
-                dlmwrite( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)), 'TrainToTest.distmatrix' ), DM2, 'delimiter', ',');
+                dlmwrite( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)), '_TrainToTest.distmatrix' ), DM2, 'delimiter', ',');
  
             end
             
