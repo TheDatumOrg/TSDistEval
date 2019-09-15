@@ -1,6 +1,14 @@
 function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Param2)
 
     % Distance Matrices for ED and SBD
+    % 1 - ED            1 Empty Parameter
+    % 2 - SBD           1 Empty Parameter
+    % 3 - MSM           10 Parameters
+    % 4 - DTW           22 Parameters
+    % 5 - EDR           20 Parameters
+    % 6 - SINK          20 Parameters
+    % 7 - GAK           26 Parameters
+    % 8 - 
     Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK'];
 
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
