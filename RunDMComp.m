@@ -88,7 +88,7 @@ function NewParameter = ComputeParameters(X, DistanceIndex, Parameter1)
     elseif DistanceIndex==7
         % GAK warping window
         dists = [];
-        for l=1:10
+        for l=1:5
              rng(l);
              x = X(ceil(rand*m),:);
              y = X(ceil(rand*m),:);
