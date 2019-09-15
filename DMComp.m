@@ -1,28 +1,8 @@
-function DM = DMComp(X, DistanceIndex, Param1)
+function DM = DMComp(X, DistanceIndex, Parameter1)
 
-    [m, TSLength] = size(X);
+    [m, ~] = size(X);
 
     DM = zeros(m,m);
-
-    % DTW warping window
-    if DistanceIndex==4                   
-        Param1 = floor(Param1/100 * TSLength); 
-    elseif DistanceIndex==7
-        
-        dists = [];
-        for l=1:10
-             rng(l);
-             x = X(ceil(rand*m),:);
-             y = X(ceil(rand*m),:);
-             w = [];
-             for p=1:TSLength
-                 w(p)= ED(x(p),y(p));
-             end
-             dists=[dists,w];
-        end
-
-            Param1 = Param1*median(dists)*sqrt(TSLength);        
-    end
                         
     parfor i=1:m-1
         %disp(i);
@@ -35,15 +15,15 @@ function DM = DMComp(X, DistanceIndex, Param1)
                 elseif DistanceIndex==2
                     tmpVector(j) = 1-max( NCCc(rowi,rowj));
                 elseif DistanceIndex==3
-                    tmpVector(j) = MSM_mex(rowi,rowj,Param1);
+                    tmpVector(j) = MSM_mex(rowi,rowj,Parameter1);
                 elseif DistanceIndex==4
-                    tmpVector(j) = dtw(rowi,rowj,Param1);    
+                    tmpVector(j) = dtw(rowi,rowj,Parameter1);    
                 elseif DistanceIndex==5
-                    tmpVector(j) = edr(rowi,rowj,Param1);  
+                    tmpVector(j) = edr(rowi,rowj,Parameter1);  
                 elseif DistanceIndex==6
-                    tmpVector(j) = SINK(rowi,rowj,Param1);    
+                    tmpVector(j) = SINK(rowi,rowj,Parameter1);    
                 elseif DistanceIndex==7
-                    tmpVector(j) = logGAK(rowi',rowj',Param1,0);
+                    tmpVector(j) = logGAK(rowi',rowj',Parameter1,0);
                 end
            end    
         DM(i,:) = tmpVector;   
@@ -61,15 +41,15 @@ function DM = DMComp(X, DistanceIndex, Param1)
         elseif DistanceIndex==2
             DM(i,i) = 1-max( NCCc(X(i,:),X(i,:)) );
         elseif DistanceIndex==3
-            DM(i,i) = MSM_mex(X(i,:),X(i,:), Param1);
+            DM(i,i) = MSM_mex(X(i,:),X(i,:), Parameter1);
         elseif DistanceIndex==4
-            DM(i,i) = dtw(X(i,:),X(i,:), Param1);
+            DM(i,i) = dtw(X(i,:),X(i,:), Parameter1);
         elseif DistanceIndex==5
-            DM(i,i) = edr(X(i,:),X(i,:), Param1);
+            DM(i,i) = edr(X(i,:),X(i,:), Parameter1);
         elseif DistanceIndex==6
-            DM(i,i) = SINK(X(i,:),X(i,:), Param1);   
+            DM(i,i) = SINK(X(i,:),X(i,:), Parameter1);   
         elseif DistanceIndex==7
-            DM(i,i) = logGAK(X(i,:)',X(i,:)',Param1,0);
+            DM(i,i) = logGAK(X(i,:)',X(i,:)',Parameter1,0);
         end        
         
     end
