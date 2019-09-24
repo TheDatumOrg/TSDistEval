@@ -1,4 +1,4 @@
-function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Param2)
+function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Param2, Param1prime, Param2prime)
 
     % Distance Matrices for ED and SBD
     % 1 - ED            1 Empty Parameter
@@ -8,8 +8,9 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
     % 5 - EDR           20 Parameters
     % 6 - SINK          20 Parameters
     % 7 - GAK           26 Parameters
-    % 8 - 
-    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK'];
+    % 8 - LCSS          40 Parameters (20 x 2)
+    % 9 - 
+    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS'];
 
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
     dir_struct = dir('./UCR2018-NEW/');
@@ -31,21 +32,23 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
             disp(['Dataset being processed: ', char(Datasets(i))]);
             DS = LoadUCRdataset(char(Datasets(i)));
             
-            Params = DistanceToParameter(DistanceIndex);
+            [Params, Params2]= DistanceToParameter(DistanceIndex);
 
             for w=Param1:Param2
+                for wprime = Param1prime:Param2prime
                 disp(w);
+                disp(wprime);
                 
-                NewParameter = ComputeParameters(DS.Train, DistanceIndex, Params(w));
+                [NewParameter1, NewParameter2] = ComputeParameters(DS.Train, DistanceIndex, Params(w), Params2(wprime));
                 
-                DM1 = DMComp(DS.Train, DistanceIndex, NewParameter);
+                DM1 = DMComp(DS.Train, DistanceIndex, NewParameter1, NewParameter2);
 
-                dlmwrite( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)), '_Train.distmatrix' ), DM1, 'delimiter', ',');
+                dlmwrite( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)),'_', num2str(Params2(wprime)), '_Train.distmatrix' ), DM1, 'delimiter', ',');
                 
-                DM2 = DMComp_TestToTrain(DS.Test, DS.Train, DistanceIndex, NewParameter);
+                DM2 = DMComp_TestToTrain(DS.Test, DS.Train, DistanceIndex, NewParameter1, NewParameter2);
 
-                dlmwrite( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)), '_TrainToTest.distmatrix' ), DM2, 'delimiter', ',');
- 
+                dlmwrite( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)),'_', num2str(Params2(wprime)), '_TrainToTest.distmatrix' ), DM2, 'delimiter', ',');
+                end
             end
             
 
@@ -58,7 +61,7 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
 
 end
 
-function Params = DistanceToParameter(DistanceIndex)
+function [Params,Params2] = DistanceToParameter(DistanceIndex)
 
             if DistanceIndex==1
                     Params = 0;
@@ -80,18 +83,25 @@ function Params = DistanceToParameter(DistanceIndex)
                     % For GAK Kernel bandwidth, 26 overall
                     % 1-20, 0.01 0.05 0.1 0.25 0.5 0.75
                     Params = [0.01,0.05,0.1,0.25,0.5,0.75,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+            elseif DistanceIndex==8
+                    % For LCSS delta and espilon, 40 overall
+                    % 
+                    % delta
+                    Params = [5,10];
+                    % epsilon
+                    Params2 = [0.001,0.003,0.005,0.007,0.009,0.01,0.03,0.05,0.07,0.09,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];
             end
 
 
 end
 
-function NewParameter = ComputeParameters(X, DistanceIndex, Parameter1)
+function [NewParameter1, NewParameter2] = ComputeParameters(X, DistanceIndex, Parameter1, Parameter2)
 
     [m, TSLength] = size(X);
 
     if DistanceIndex==4             
         % DTW warping window
-        NewParameter = floor(Parameter1/100 * TSLength); 
+        NewParameter1 = floor(Parameter1/100 * TSLength); 
         
     elseif DistanceIndex==7
         % GAK warping window
@@ -107,9 +117,16 @@ function NewParameter = ComputeParameters(X, DistanceIndex, Parameter1)
              dists=[dists,w];
         end
 
-        NewParameter = Parameter1*median(dists)*sqrt(TSLength);      
+        NewParameter1 = Parameter1*median(dists)*sqrt(TSLength);  
+        
+        
+    elseif DistanceIndex==8
+        % LCSS 
+        NewParameter1 = floor(Parameter1/100 * TSLength); 
+        NewParameter2 = Parameter2; 
+
     else
-        NewParameter = Parameter1;
+        NewParameter1 = Parameter1;
     end
 
 end

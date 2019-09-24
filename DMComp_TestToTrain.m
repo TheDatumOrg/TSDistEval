@@ -1,4 +1,4 @@
-function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1)
+function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
 
     [nrowsX, ~]=size(X);
     [nrowsY, ~]=size(Y);
@@ -23,6 +23,8 @@ function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1)
                     DM(i,j) = SINK(tmpX,Y(j,:), Parameter1);   
                 elseif DistanceIndex==7
                     DM(i,j) = logGAK(tmpX',Y(j,:)',Parameter1,0);
+                elseif DistanceIndex==8
+                    DM(i,j) = LCSS(tmpX',Y(j,:)',Parameter1,Parameter2);
                 end       
             end    
     end

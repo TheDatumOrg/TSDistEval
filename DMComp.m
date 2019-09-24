@@ -1,4 +1,4 @@
-function DM = DMComp(X, DistanceIndex, Parameter1)
+function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
 
     [m, ~] = size(X);
 
@@ -24,6 +24,8 @@ function DM = DMComp(X, DistanceIndex, Parameter1)
                     tmpVector(j) = SINK(rowi,rowj,Parameter1);    
                 elseif DistanceIndex==7
                     tmpVector(j) = logGAK(rowi',rowj',Parameter1,0);
+                elseif DistanceIndex==8
+                    tmpVector(j) = LCSS(rowi',rowj',Parameter1,Parameter2);
                 end
            end    
         DM(i,:) = tmpVector;   
@@ -50,6 +52,8 @@ function DM = DMComp(X, DistanceIndex, Parameter1)
             DM(i,i) = SINK(X(i,:),X(i,:), Parameter1);   
         elseif DistanceIndex==7
             DM(i,i) = logGAK(X(i,:)',X(i,:)',Parameter1,0);
+        elseif DistanceIndex==8
+            DM(i,i) = LCSS(X(i,:)',X(i,:)',Parameter1,Parameter2);
         end        
         
     end
