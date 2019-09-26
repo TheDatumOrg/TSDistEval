@@ -1,6 +1,6 @@
 function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
 
-    [nrowsX, ~]=size(X);
+    [nrowsX, TSLength]=size(X);
     [nrowsY, ~]=size(Y);
 
     DM = zeros(nrowsX,nrowsY);
