@@ -9,8 +9,8 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
     % 6 - SINK          20 Parameters
     % 7 - GAK           26 Parameters
     % 8 - LCSS          40 Parameters (20 x 2)
-    % 9 - 
-    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS'];
+    % 9 - TWED          30 Parameters (5 x 6)
+    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWED'];
 
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
     dir_struct = dir('./UCR2018-NEW/');
@@ -90,6 +90,14 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     Params = [5,10];
                     % epsilon
                     Params2 = [0.001,0.003,0.005,0.007,0.009,0.01,0.03,0.05,0.07,0.09,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];
+                    
+            elseif DistanceIndex==9
+                    % For TWED lambda and nu, 30 overall
+                    % 
+                    % lambda
+                    Params = [0, 0.25, 0.5, 0.75, 1.0];
+                    % nu
+                    Params2 = [0.00001, 0.0001, 0.001, 0.01, 0.1, 1];
             end
 
 
@@ -127,6 +135,7 @@ function [NewParameter1, NewParameter2] = ComputeParameters(X, DistanceIndex, Pa
 
     else
         NewParameter1 = Parameter1;
+        NewParameter2 = Parameter2;
     end
 
 end
