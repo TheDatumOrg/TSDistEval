@@ -1,4 +1,4 @@
-function [ distance, DP ] = TWED( A, timeSA, B, timeSB, lambda, nu )
+function distance = TWED( A, timeSA, B, timeSB, lambda, nu )
 % [distance, DP] = TWED( A, timeSA, B, timeSB, lambda, nu )
 % Compute Time Warp Edit Distance (TWED) for given time series A and B
 %
@@ -12,20 +12,20 @@ function [ distance, DP ] = TWED( A, timeSA, B, timeSB, lambda, nu )
 % Code by: P.-F. Marteau - http://people.irisa.fr/Pierre-Francois.Marteau/
 
     %Check if input arguments
-    if length(A) ~= length(timeSA)
-        warning('The length of A is not equal length of timeSA')
-        return
-    end
+    %if length(A) ~= length(timeSA)
+    %    %warning('The length of A is not equal length of timeSA')
+    %    return
+    %end
 
-    if length(B) ~= length(timeSB)
-        warning('The length of B is not equal length of timeSB')
-        return
-    end
+   % if length(B) ~= length(timeSB)
+   %     %warning('The length of B is not equal length of timeSB')
+    %    return
+    %end
 
-    if nu<0
-        warning('nu is negative')
-        return
-    end
+    %if nu<0
+    %    warning('nu is negative')
+    %    return
+    %end
     % Add padding
     A  = [ 0 A ];
     timeSA = [ 0 timeSA ];
