@@ -1,6 +1,6 @@
 function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
 
-    [nrowsX, ~]=size(X);
+    [nrowsX, TSLength]=size(X);
     [nrowsY, ~]=size(Y);
 
     DM = zeros(nrowsX,nrowsY);
@@ -26,7 +26,7 @@ function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
                 elseif DistanceIndex==8
                     DM(i,j) = LCSS(tmpX',Y(j,:)',Parameter1,Parameter2);
                 elseif DistanceIndex==9
-                    DM(i,j) = TWED(tmpX,1:TSLength,Y(j,:),1:TSLength,Parameter1,Parameter2);
+                    DM(i,j) = TWED_mex(tmpX,1:TSLength,Y(j,:),1:TSLength,Parameter1,Parameter2);
                 end       
             end    
     end

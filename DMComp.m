@@ -27,7 +27,7 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
                 elseif DistanceIndex==8
                     tmpVector(j) = LCSS(rowi',rowj',Parameter1,Parameter2);
                 elseif DistanceIndex==9
-                    tmpVector(j) = TWED(rowi,1:TSLength,rowj,1:TSLength,Parameter1,Parameter2);
+                    tmpVector(j) = TWED_mex(rowi,1:TSLength,rowj,1:TSLength,Parameter1,Parameter2);
                 end
            end    
         DM(i,:) = tmpVector;   
@@ -57,7 +57,7 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
         elseif DistanceIndex==8
             DM(i,i) = LCSS(X(i,:)',X(i,:)',Parameter1,Parameter2);
         elseif DistanceIndex==9
-            DM(i,i) = TWED(X(i,:),1:TSLength,X(i,:),1:TSLength,Parameter1,Parameter2);
+            DM(i,i) = TWED_mex(X(i,:),1:TSLength,X(i,:),1:TSLength,Parameter1,Parameter2);
         end        
         
     end
