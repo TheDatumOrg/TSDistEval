@@ -10,6 +10,8 @@ function distance = MSM(X, Y, c)
 m = numel(X);
 n = numel(Y);
 
+Cost = zeros(m,n);
+
 % Initialization
 Cost(1,1) = abs( X(1) - Y(1) );
 for i = 2 : m  % first column
