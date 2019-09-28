@@ -22,6 +22,9 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
     
     [Datasets, ~] = sort(Datasets);
 
+    javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
+    javaaddpath('./simcompare.jar');
+    
     poolobj = gcp('nocreate');
     delete(poolobj);
     

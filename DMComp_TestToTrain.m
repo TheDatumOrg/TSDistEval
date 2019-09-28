@@ -10,6 +10,8 @@ function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
 
     parfor i=1:nrowsX
             %disp(i);
+            javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
+            javaaddpath('./simcompare.jar');
             tmpX = X(i,:);
             obj = edu.uchicago.cs.tsdb.Distance;
             for j=1:nrowsY                  

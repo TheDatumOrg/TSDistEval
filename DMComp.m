@@ -9,6 +9,9 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
                         
     parfor i=1:m-1
         %disp(i);
+         javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
+         javaaddpath('./simcompare.jar');
+    
         rowi = X(i,:);
         tmpVector = zeros(1,m);
         obj = edu.uchicago.cs.tsdb.Distance;
