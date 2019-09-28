@@ -22,10 +22,10 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
     
     [Datasets, ~] = sort(Datasets);
 
-    %poolobj = gcp('nocreate');
-    %delete(poolobj);
+    poolobj = gcp('nocreate');
+    delete(poolobj);
     
-    %parpool(18);
+    parpool(18);
     
     for i = 1:length(Datasets)
         
@@ -58,8 +58,8 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
         
     end
     
-    %poolobj = gcp('nocreate');
-    %delete(poolobj);
+    poolobj = gcp('nocreate');
+    delete(poolobj);
 
 end
 

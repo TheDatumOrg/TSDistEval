@@ -2,16 +2,16 @@ function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
 
     javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
     javaaddpath('./simcompare.jar');
-    obj = edu.uchicago.cs.tsdb.Distance;
-    
+     
     [nrowsX, TSLength]=size(X);
     [nrowsY, ~]=size(Y);
 
     DM = zeros(nrowsX,nrowsY);
 
-    for i=1:nrowsX
+    parfor i=1:nrowsX
             %disp(i);
             tmpX = X(i,:);
+            obj = edu.uchicago.cs.tsdb.Distance;
             for j=1:nrowsY                  
                 if DistanceIndex==1
                     DM(i,j) = ED(tmpX,Y(j,:));
