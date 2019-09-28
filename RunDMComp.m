@@ -10,7 +10,9 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
     % 7 - GAK           26 Parameters
     % 8 - LCSS          40 Parameters (20 x 2)
     % 9 - TWED          30 Parameters (5 x 6)
-    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWED'];
+    % 10 - DISSIM       2 Empty Parameters (Script now has 2 params)
+    % 
+    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWED', 'DISSIM'];
 
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
     dir_struct = dir('./UCR2018-NEW/');
@@ -98,6 +100,11 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     Params = [0, 0.25, 0.5, 0.75, 1.0];
                     % nu
                     Params2 = [0.00001, 0.0001, 0.001, 0.01, 0.1, 1];
+            elseif DistanceIndex==10
+                    % For DISSIM
+                    % 
+                    Params = 0;
+                    Params2 = 0;
             end
 
 

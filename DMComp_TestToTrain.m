@@ -1,5 +1,9 @@
 function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
 
+    javaaddpath('/tank/local/jopa/TSDistEval/timeseries-1.0-SNAPSHOT.jar');
+    javaaddpath('/tank/local/jopa/TSDistEval/simcompare.jar');
+    obj = edu.uchicago.cs.tsdb.Distance;
+    
     [nrowsX, TSLength]=size(X);
     [nrowsY, ~]=size(Y);
 
@@ -27,6 +31,8 @@ function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
                     DM(i,j) = LCSS(tmpX',Y(j,:)',Parameter1,Parameter2);
                 elseif DistanceIndex==9
                     DM(i,j) = TWED_mex(tmpX,1:TSLength,Y(j,:),1:TSLength,Parameter1,Parameter2);
+                elseif DistanceIndex==10
+                    DM(i,j) = obj.DissimDistance(tmpX,Y(j,:));
                 end       
             end    
     end
