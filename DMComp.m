@@ -1,17 +1,17 @@
 function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
 
-    javaaddpath('/tank/local/jopa/TSDistEval/timeseries-1.0-SNAPSHOT.jar');
-    javaaddpath('/tank/local/jopa/TSDistEval/simcompare.jar');
+    javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
+    javaaddpath('./simcompare.jar');
     obj = edu.uchicago.cs.tsdb.Distance;
     
     [m, TSLength] = size(X);
 
     DM = zeros(m,m);
                         
-    parfor i=1:m-1
+    for i=1:m-1
         %disp(i);
         rowi = X(i,:);
-        tmpVector = zeros(1,m);
+        tmpVector = zeros(1,m);        
            for j=i+1:m
                 rowj = X(j,:); 
                 if DistanceIndex==1
@@ -45,6 +45,8 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
            end    
     end
 
+    
+    
     for i=1:m
         if DistanceIndex==1
             DM(i,i) = ED(X(i,:),X(i,:));

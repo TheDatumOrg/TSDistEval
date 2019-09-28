@@ -1,7 +1,7 @@
 function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
 
-    javaaddpath('/tank/local/jopa/TSDistEval/timeseries-1.0-SNAPSHOT.jar');
-    javaaddpath('/tank/local/jopa/TSDistEval/simcompare.jar');
+    javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
+    javaaddpath('./simcompare.jar');
     obj = edu.uchicago.cs.tsdb.Distance;
     
     [nrowsX, TSLength]=size(X);
@@ -9,7 +9,7 @@ function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
 
     DM = zeros(nrowsX,nrowsY);
 
-    parfor i=1:nrowsX
+    for i=1:nrowsX
             %disp(i);
             tmpX = X(i,:);
             for j=1:nrowsY                  
