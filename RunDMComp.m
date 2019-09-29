@@ -12,7 +12,7 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
     % 9 - TWED          30 Parameters (5 x 6)
     % 10 - DISSIM       2 Empty Parameters (Script now has 2 params)
     % 11 - TQuEST       10 Parameters
-    % 12 - Swale        20 Parameters
+    % 12 - Swale        15 Parameters
     Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWED', 'DISSIM', 'TQuEST', 'Swale'];
 
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
@@ -112,9 +112,9 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     Params = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];
                     Params2 = 0;        
             elseif DistanceIndex==12
-                    % For TQUEST
+                    % For Swale
                     % 
-                    Params = [0.001,0.003,0.005,0.007,0.009,0.01,0.03,0.05,0.07,0.09,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];
+                    Params = [0.01,0.03,0.05,0.07,0.09,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];
                     Params2 = 0;          
             end
 
