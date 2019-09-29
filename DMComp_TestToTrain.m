@@ -35,6 +35,8 @@ function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
                     DM(i,j) = obj.DissimDistance(tmpX,Y(j,:));
                 elseif DistanceIndex==11
                     DM(i,j) = obj.TQuESTDistance(tmpX,Y(j,:),Parameter1,1,0,0.1);
+                elseif DistanceIndex==12
+                    DM(i,j) = obj.SwaleDistance(tmpX,Y(j,:),0,1,Parameter1);
                 end       
             end    
     end

@@ -34,7 +34,9 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
                 elseif DistanceIndex==10 % Java code
                     tmpVector(j) = obj.DissimDistance(rowi,rowj);
                 elseif DistanceIndex==11 % Java code
-                    tmpVector(j) = obj.TQuESTDistance(rowi,rowj,Parameter1,1,0,0.1);     
+                    tmpVector(j) = obj.TQuESTDistance(rowi,rowj,Parameter1,1,0,0.1); 
+                elseif DistanceIndex==12 % Java code
+                    tmpVector(j) = obj.SwaleDistance(rowi,rowj,0,1,Parameter1);     
                 end
            end    
         DM(i,:) = tmpVector;   
@@ -69,6 +71,8 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
             DM(i,i) = obj.DissimDistance(X(i,:),X(i,:));
         elseif DistanceIndex==11
             DM(i,i) = obj.TQuESTDistance(X(i,:),X(i,:),Parameter1,1,0,0.1);    
+        elseif DistanceIndex==12
+            DM(i,i) = obj.SwaleDistance(X(i,:),X(i,:),0,1,Parameter1);    
         end        
         
     end
