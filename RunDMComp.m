@@ -105,8 +105,8 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     % 
                     Params = 0;
                     Params2 = 0;
-            elseif DistanceIndex==10
-                    % For DISSIM
+            elseif DistanceIndex==11
+                    % For TQUEST
                     % 
                     Params = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];
                     Params2 = 0;        
