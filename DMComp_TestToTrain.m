@@ -33,6 +33,8 @@ function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
                     DM(i,j) = TWED_mex(tmpX,1:TSLength,Y(j,:),1:TSLength,Parameter1,Parameter2);
                 elseif DistanceIndex==10
                     DM(i,j) = obj.DissimDistance(tmpX,Y(j,:));
+                elseif DistanceIndex==11
+                    DM(i,j) = obj.TQuESTDistance(tmpX,Y(j,:),Parameter1,1,0,0.1);
                 end       
             end    
     end

@@ -33,6 +33,8 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
                     tmpVector(j) = TWED_mex(rowi,1:TSLength,rowj,1:TSLength,Parameter1,Parameter2);
                 elseif DistanceIndex==10 % Java code
                     tmpVector(j) = obj.DissimDistance(rowi,rowj);
+                elseif DistanceIndex==11 % Java code
+                    tmpVector(j) = obj.TQuESTDistance(rowi,rowj,Parameter1,1,0,0.1);     
                 end
            end    
         DM(i,:) = tmpVector;   
@@ -65,6 +67,8 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
             DM(i,i) = TWED_mex(X(i,:),1:TSLength,X(i,:),1:TSLength,Parameter1,Parameter2);
         elseif DistanceIndex==10
             DM(i,i) = obj.DissimDistance(X(i,:),X(i,:));
+        elseif DistanceIndex==11
+            DM(i,i) = obj.TQuESTDistance(X(i,:),X(i,:),Parameter1,1,0,0.1);    
         end        
         
     end
