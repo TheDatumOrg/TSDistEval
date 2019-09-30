@@ -82,5 +82,5 @@ end
 function [cost] = Dlpr(a, b, sigma)
     factor=1.0/3.0;
     minprob=1e-20;
-    cost = factor*(exp(-sum((a - b).^2)/sigma)+minprob);
+    cost = factor*(exp(-sigma*sum((a - b).^2))+minprob);
 end
