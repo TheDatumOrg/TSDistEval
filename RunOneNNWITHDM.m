@@ -43,7 +43,7 @@ function RunOneNNWITHDM(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
 
                     [~,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods, bestParam1, bestParam2);
 
-                    OneNNAcc = OneNNClassifierWITHKM(DS, DMTESTTOTRAIN);
+                    OneNNAcc = OneNNClassifierWITHDM(DS, DMTESTTOTRAIN);
                     
                     Results(i,1) = bestParam1;
                     Results(i,2) = bestParam2;
