@@ -1,13 +1,13 @@
 function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
 
-    javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
-    javaaddpath('./simcompare.jar');
-    obj = edu.uchicago.cs.tsdb.Distance;
+    %javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
+    %javaaddpath('./simcompare.jar');
+    %obj = edu.uchicago.cs.tsdb.Distance;
     [m, TSLength] = size(X);
 
     DM = zeros(m,m);
                         
-    for i=1:m-1
+    parfor i=1:m-1
         %disp(i);
         rowi = X(i,:);
         tmpVector = zeros(1,m);
@@ -32,11 +32,13 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
                 elseif DistanceIndex==9
                     tmpVector(j) = TWED_mex(rowi,1:TSLength,rowj,1:TSLength,Parameter1,Parameter2);
                 elseif DistanceIndex==10 % Java code
-                    tmpVector(j) = obj.DissimDistance(rowi,rowj);
+                    %tmpVector(j) = obj.DissimDistance(rowi,rowj);
                 elseif DistanceIndex==11 % Java code
-                    tmpVector(j) = obj.TQuESTDistance(rowi,rowj,Parameter1,1,0,0.1); 
-                elseif DistanceIndex==12 % Java code
-                    tmpVector(j) = obj.SwaleDistance(rowi,rowj,0,1,Parameter1);     
+                    %tmpVector(j) = obj.TQuESTDistance(rowi,rowj,Parameter1,1,0,0.1); 
+                elseif DistanceIndex==12 % Java code                    
+                    %tmpVector(j) = obj.SwaleDistance(rowi,rowj,0,1,Parameter1); 
+                elseif DistanceIndex==13 % Java code
+                    tmpVector(j) = KDTWNorm_mex(rowi,rowj,Parameter1);  
                 end
            end    
         DM(i,:) = tmpVector;   
@@ -68,11 +70,13 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
         elseif DistanceIndex==9
             DM(i,i) = TWED_mex(X(i,:),1:TSLength,X(i,:),1:TSLength,Parameter1,Parameter2);
         elseif DistanceIndex==10
-            DM(i,i) = obj.DissimDistance(X(i,:),X(i,:));
+            %DM(i,i) = obj.DissimDistance(X(i,:),X(i,:));
         elseif DistanceIndex==11
-            DM(i,i) = obj.TQuESTDistance(X(i,:),X(i,:),Parameter1,1,0,0.1);    
+            %DM(i,i) = obj.TQuESTDistance(X(i,:),X(i,:),Parameter1,1,0,0.1);    
         elseif DistanceIndex==12
-            DM(i,i) = obj.SwaleDistance(X(i,:),X(i,:),0,1,Parameter1);    
+            %DM(i,i) = obj.SwaleDistance(X(i,:),X(i,:),0,1,Parameter1);    
+        elseif DistanceIndex==13
+            DM(i,i) = KDTWNorm_mex(X(i,:),X(i,:),Parameter1); 
         end        
         
     end

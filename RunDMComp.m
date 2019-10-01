@@ -13,7 +13,8 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
     % 10 - DISSIM       2 Empty Parameters (Script now has 2 params)
     % 11 - TQuEST       10 Parameters
     % 12 - Swale        15 Parameters
-    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWED', 'DISSIM', 'TQuEST', 'Swale'];
+    % 13- KDTW          
+    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWED', 'DISSIM', 'TQuEST', 'Swale', 'KDTW'];
 
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
     dir_struct = dir('./UCR2018-NEW/');
@@ -23,10 +24,10 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
     
     [Datasets, ~] = sort(Datasets);
     
-    %poolobj = gcp('nocreate');
-    %delete(poolobj);
+    poolobj = gcp('nocreate');
+    delete(poolobj);
     
-    %parpool(18);
+    parpool(18);
     
     for i = 1:length(Datasets)
         
@@ -59,8 +60,8 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
         
     end
     
-    %poolobj = gcp('nocreate');
-    %delete(poolobj);
+    poolobj = gcp('nocreate');
+    delete(poolobj);
 
 end
 
@@ -115,7 +116,12 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     % For Swale
                     % 
                     Params = [0.01,0.03,0.05,0.07,0.09,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];
-                    Params2 = 0;          
+                    Params2 = 0; 
+            elseif DistanceIndex==13
+                    % For Swale
+                    % 
+                    Params = [2^-15,2^-14,2^-13,2^-12,2^-11,2^-10,2^-9,2^-8,2^-7,2^-6,2^-5,2^-4,2^-3,2^-2,2^-1,2^0,2^1,2^2,2^3,2^4];
+                    Params2 = 0; 
             end
 
 
