@@ -125,24 +125,31 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
 
             if DistanceIndex==1
                     Params = 0;
+                    Params2 = 0;
             elseif DistanceIndex==2
                     Params = 0;
+                    Params2 = 0;
             elseif DistanceIndex==3
                     % MSM - 10 Parameters
                     Params = [0.01,0.1,1,10,100,0.05,0.5,5,50,500];
+                    Params2 = 0;
             elseif DistanceIndex==4
                     % DTW - 0-20, 100 - 22 Parameters
                     Params = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,100];  
+                    Params2 = 0;
             elseif DistanceIndex==5
                     % EDR - 20 Parameters
                     Params = [0.001,0.003,0.005,0.007,0.009,0.01,0.03,0.05,0.07,0.09,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];  
+                    Params2 = 0;
             elseif DistanceIndex==6
                     % SINK
-                    Params = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];  
+                    Params = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]; 
+                    Params2 = 0;
             elseif DistanceIndex==7
                     % For GAK Kernel bandwidth, 26 overall
                     % 1-20, 0.01 0.05 0.1 0.25 0.5 0.75
                     Params = [0.01,0.05,0.1,0.25,0.5,0.75,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+                    Params2 = 0;
             elseif DistanceIndex==8
                     % For LCSS delta and espilon, 40 overall
                     % 
