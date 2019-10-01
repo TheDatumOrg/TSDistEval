@@ -12,11 +12,13 @@ function RunOneNNWITHDM(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
     %LeaveOneOutAccuracies = zeros(length(Datasets),20);
     %LeaveOneOutRuntimes = zeros(length(Datasets),20);
     
-    Results = zeros(length(Datasets),4);
+    %Results = zeros(length(Datasets),4);
 
     for i = 1:length(Datasets)
 
             if (i>=DataSetStartIndex && i<=DataSetEndIndex)
+
+                Results = zeros(length(Datasets),4);
 
                     disp(['Dataset being processed: ', char(Datasets(i))]);
                     DS = LoadUCRdataset(char(Datasets(i)));
