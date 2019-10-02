@@ -1,13 +1,13 @@
 function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
 
-    javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
-    javaaddpath('./simcompare.jar');
-    obj = edu.uchicago.cs.tsdb.Distance;
+    %javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
+    %javaaddpath('./simcompare.jar');
+    %obj = edu.uchicago.cs.tsdb.Distance;
     [m, TSLength] = size(X);
 
     DM = zeros(m,m);
                         
-    for i=1:m-1
+    parfor i=1:m-1
         %disp(i);
         rowi = X(i,:);
         tmpVector = zeros(1,m);
@@ -36,7 +36,7 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
                 elseif DistanceIndex==11 % Java code
                     %tmpVector(j) = obj.TQuESTDistance(rowi,rowj,Parameter1,1,0,0.1); 
                 elseif DistanceIndex==12 % Java code                    
-                    tmpVector(j) = obj.SwaleDistance(rowi,rowj,0,1,Parameter1); 
+                    %tmpVector(j) = obj.SwaleDistance(rowi,rowj,0,1,Parameter1); 
                 elseif DistanceIndex==13 % Java code
                     tmpVector(j) = KDTWNorm_mex(rowi,rowj,Parameter1);  
                 end
