@@ -18,7 +18,7 @@ function RunClusteringHierComplete(DataSetStartIndex, DataSetEndIndex, DistanceI
 
             if (i>=DataSetStartIndex && i<=DataSetEndIndex)
 
-                Results = zeros(length(Datasets),3);
+                Results = zeros(length(Datasets),3);ssss
 
                     disp(['Dataset being processed: ', char(Datasets(i))]);
                     DS = LoadUCRdataset(char(Datasets(i)));
