@@ -30,6 +30,8 @@ function RunClusteringHierComplete(DataSetStartIndex, DataSetEndIndex, DistanceI
                         for wprime = 1:length(Params2)
                             [DMTRAIN,~] = DistanceToDM(DistanceIndex,Datasets,i,Methods, Params(w), Params2(wprime));
 
+                             DMTRAIN = FixDataset(DMTRAIN);
+                            
                              labels = HierarchicalClustering_Complete(DMTRAIN, length(DS.ClassNames));
                        
                              Results(i,1) = Params(w);
@@ -173,4 +175,13 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
             end
 
 
+            
+end
+
+function DM = FixDataset(DM)
+
+    for i=1:size(DM,1)
+        DM(i,i) = 0;
+    end
+    
 end
