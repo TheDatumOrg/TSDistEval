@@ -1,13 +1,13 @@
 function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
 
-    %javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
-    %javaaddpath('./simcompare.jar');
-    %obj = edu.uchicago.cs.tsdb.Distance;
+    javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
+    javaaddpath('./simcompare.jar');
+    obj = edu.uchicago.cs.tsdb.Distance;
     [m, TSLength] = size(X);
 
     DM = zeros(m,m);
                         
-    parfor i=1:m-1
+    for i=1:m-1
         %disp(i);
         rowi = X(i,:);
         tmpVector = zeros(1,m);
@@ -28,17 +28,20 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
                 elseif DistanceIndex==7
                     tmpVector(j) = logGAK(rowi',rowj',Parameter1,0);
                 elseif DistanceIndex==8
-                    tmpVector(j) = LCSS(rowi',rowj',Parameter1,Parameter2);
+                    %tmpVector(j) = LCSS(rowi',rowj',Parameter1,Parameter2);
+                    tmpVector(j) = obj.LCSSDistance(rowi,rowj,Parameter1,Parameter2);
                 elseif DistanceIndex==9
                     tmpVector(j) = TWED_mex(rowi,1:TSLength,rowj,1:TSLength,Parameter1,Parameter2);
                 elseif DistanceIndex==10 % Java code
-                    %tmpVector(j) = obj.DissimDistance(rowi,rowj);
+                    tmpVector(j) = obj.DissimDistance(rowi,rowj);
                 elseif DistanceIndex==11 % Java code
-                    %tmpVector(j) = obj.TQuESTDistance(rowi,rowj,Parameter1,1,0,0.1); 
+                    tmpVector(j) = obj.TQuESTDistance(rowi,rowj,Parameter1,1,0,0.1); 
                 elseif DistanceIndex==12 % Java code                    
-                    %tmpVector(j) = obj.SwaleDistance(rowi,rowj,0,1,Parameter1); 
-                elseif DistanceIndex==13 % Java code
-                    tmpVector(j) = KDTWNorm_mex(rowi,rowj,Parameter1);  
+                    tmpVector(j) = obj.SwaleDistance(rowi,rowj,0,1,Parameter1); 
+                elseif DistanceIndex==13 
+                    tmpVector(j) = KDTWNorm_mex(rowi,rowj,Parameter1); 
+                elseif DistanceIndex==14 % Java code                    
+                    tmpVector(j) = obj.ERPDistance(rowi,rowj); 
                 end
            end    
         DM(i,:) = tmpVector;   
@@ -66,17 +69,20 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
         elseif DistanceIndex==7
             DM(i,i) = logGAK(X(i,:)',X(i,:)',Parameter1,0);
         elseif DistanceIndex==8
-            DM(i,i) = LCSS(X(i,:)',X(i,:)',Parameter1,Parameter2);
+            %DM(i,i) = LCSS(X(i,:)',X(i,:)',Parameter1,Parameter2);
+            DM(i,i) = obj.LCSSDistance(X(i,:),X(i,:),Parameter1,Parameter2);
         elseif DistanceIndex==9
             DM(i,i) = TWED_mex(X(i,:),1:TSLength,X(i,:),1:TSLength,Parameter1,Parameter2);
         elseif DistanceIndex==10
-            %DM(i,i) = obj.DissimDistance(X(i,:),X(i,:));
+            DM(i,i) = obj.DissimDistance(X(i,:),X(i,:));
         elseif DistanceIndex==11
-            %DM(i,i) = obj.TQuESTDistance(X(i,:),X(i,:),Parameter1,1,0,0.1);    
+            DM(i,i) = obj.TQuESTDistance(X(i,:),X(i,:),Parameter1,1,0,0.1);    
         elseif DistanceIndex==12
-            %DM(i,i) = obj.SwaleDistance(X(i,:),X(i,:),0,1,Parameter1);    
+            DM(i,i) = obj.SwaleDistance(X(i,:),X(i,:),0,1,Parameter1);    
         elseif DistanceIndex==13
             DM(i,i) = KDTWNorm_mex(X(i,:),X(i,:),Parameter1); 
+        elseif DistanceIndex==14
+            DM(i,i) = obj.ERPDistance(X(i,:),X(i,:)); 
         end        
         
     end
