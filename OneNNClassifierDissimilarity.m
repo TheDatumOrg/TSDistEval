@@ -104,13 +104,13 @@ function acc = OneNNClassifierDissimilarity(DS, DistanceIndex)
                 distance = emanon4(compare_to_this, classify_this);  
             end
 
-            if distance==0
+            if distance==0 || isnan(distance) || isinf(distance)
                 disp(distance)
                 disp(id)
                 disp(i)
                 disp('*********** WARNING ************')
             end
-            if isnan(distance) || isinf(distance) || ~isreal(distance) || ~isscalar(distance)
+            if ~isreal(distance) || ~isscalar(distance)
                 disp(distance)
                 disp(id)
                 disp(i)
