@@ -6,7 +6,7 @@ function acc = OneNNClassifierSimilarity(DS, DistanceIndex)
         disp(id);
         classify_this = DS.Test(id,:);
         
-        best_so_far = -999999999999;
+        best_so_far = -inf;
 
         for i = 1 : DS.TrainInstancesCount
             
