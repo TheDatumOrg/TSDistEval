@@ -3,7 +3,7 @@ function acc = OneNNClassifierSimilarity(DS, DistanceIndex)
     acc = 0;
     
     for id = 1 : DS.TestInstancesCount
-        disp(id);
+        %disp(id);
         classify_this = DS.Test(id,:);
         
         best_so_far = -inf;
@@ -28,6 +28,7 @@ function acc = OneNNClassifierSimilarity(DS, DistanceIndex)
             end
             
             if distance==0 || isnan(distance) || isinf(distance) || ~isreal(distance) || ~isscalar(distance)
+                distance
                error('########### ERROR #############')
             end
             
