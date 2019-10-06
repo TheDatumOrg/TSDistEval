@@ -11,7 +11,7 @@ function acc = OneNNClassifierDissimilarity(DS, DistanceIndex)
         for i = 1 : DS.TrainInstancesCount
             
             compare_to_this = DS.Train(i,:);
-
+    
             if DistanceIndex==1
                 distance = euclidean(compare_to_this, classify_this);
             elseif DistanceIndex==2
@@ -84,21 +84,24 @@ function acc = OneNNClassifierDissimilarity(DS, DistanceIndex)
                 distance = sorensen(compare_to_this, classify_this);
             elseif DistanceIndex==36
                 distance = prob_symmetric_chi(compare_to_this, classify_this);            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            elseif DistanceIndex==123
-                distance = czekanowski(compare_to_this, classify_this);
-                
-                
+            elseif DistanceIndex==37
+                distance = gower(compare_to_this, classify_this);              
+            elseif DistanceIndex==38
+                distance = intersection(compare_to_this, classify_this);  
+            elseif DistanceIndex==39
+                distance = motyka(compare_to_this, classify_this);  
+            elseif DistanceIndex==40
+                distance = cosine(compare_to_this, classify_this);  
+            elseif DistanceIndex==41
+                distance = matusita(compare_to_this, classify_this);  
+            elseif DistanceIndex==42
+                distance = bhattacharyya(compare_to_this, classify_this);  
+            elseif DistanceIndex==43
+                distance = czekanowski(compare_to_this, classify_this);  
+            elseif DistanceIndex==44
+                distance = jansen_shannon(compare_to_this, classify_this);  
+            elseif DistanceIndex==45
+                distance = emanon4(compare_to_this, classify_this);  
             end
 
             if distance < best_so_far

@@ -12,20 +12,19 @@ function acc = OneNNClassifierSimilarity(DS, DistanceIndex)
             
             compare_to_this = DS.Train(i,:);
 
-            if DistanceIndex==40
-                distance = intersection(compare_to_this, classify_this);
-            elseif DistanceIndex==41
-                distance = motyka(compare_to_this, classify_this);
-            elseif DistanceIndex==42
-                distance = pdist2(compare_to_this, classify_this,'cityblock')
-            elseif DistanceIndex==43
-                distance = czekanowski(compare_to_this, classify_this);
-            elseif DistanceIndex==44
-                distance = czekanowski(compare_to_this, classify_this);
-            elseif DistanceIndex==45
-                distance = czekanowski(compare_to_this, classify_this);
-            elseif DistanceIndex==46
-                distance = czekanowski(compare_to_this, classify_this);
+            % 46 - inner product (similarity)   GOOD
+            % 47 - Harnominc mean (similarity)  GOOD
+            % 48 - Fidelity (similarity)        GOOD
+            % 49 - Kumar Hassebrook         GOOD
+    
+            if DistanceIndex==46
+                distance = innerproduct(compare_to_this, classify_this);
+            elseif DistanceIndex==47
+                distance = harmonicmean(compare_to_this, classify_this);
+            elseif DistanceIndex==48
+                distance = fidelity(compare_to_this, classify_this,'cityblock');
+            elseif DistanceIndex==49
+                distance = kumarhassebrook(compare_to_this, classify_this);
             end
             
             if distance > best_so_far

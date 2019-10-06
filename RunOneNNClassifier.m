@@ -1,5 +1,5 @@
 function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)  
-
+    
     % Dissimilarity Methods over pairs of probability density functions
     % 1 - Euclidean                 GOOD
     % 2 - Squared Euclidean         GOOD
@@ -52,25 +52,14 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
     % 47 - Harnominc mean (similarity)  GOOD
     % 48 - Fidelity (similarity)        GOOD
     % 49 - Kumar Hassebrook         GOOD
-    % 
-    
-    
-    %  - Czekanowski
+
     Methods = [cellstr('ED'), 'SQRTED', 'ABSED', 'Manhattan', 'Jaccard', 'Dice', 'AVG_l1_linf', 'Lorentzian' ...
         'Chebyshev', 'Hellinger', 'KumarJohnson', 'Divergence', 'Emanon2', 'Emanon3', 'Clark', 'Soergel' ...
         'Canberra', 'Additive_symm_chi', 'Squared_chi', 'Max_symmetric_chi', 'Min_symmetric_chi' ...
-        'Kulczynski', 'Tanimoto', 'Wavehedges', 'Taneja', 'topsoe', 'vicis_wave_hedges', 'Square_chord', 'Kullback' ...
+        'Kulczynski', 'Tanimoto', 'Wavehedges', 'Taneja', 'Topsoe', 'Vicis_wave_hedges', 'Square_chord', 'Kullback' ...
         'Neyman', 'K_divergence', 'Jeffrey', 'Jensen_difference', 'Pearson', 'Sorensen', 'Prob_symmetric_chi' ...
-        
-        'Gower','Intersection', 'Motyka'
-        
-        % 40 and below
-        
-        
-        
-        
-];
-
+        'Gower','Intersection', 'Motyka', 'Cosine', 'Matusita', 'Bhattacharyya', 'Czekanowski', 'Jansen_shannon', 'Emanon4' ...
+        'InnerProduct', 'HarmonicMean', 'Fidelity', 'KumarHassebrook'];
     
     addpath(genpath('distancemeasures/.'));
     
@@ -82,7 +71,7 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
     
     [Datasets, DSOrder] = sort(Datasets);
 
-    Results = zeros(length(Datasets),2);
+    Results = zeros(length(Datasets),1);
     
     for i = 1:length(Datasets)
 
@@ -90,18 +79,18 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
 
                     disp(['Dataset being processed: ', char(Datasets(i))]);
                     DS = LoadUCRdataset(char(Datasets(i)));
-                    
-                    tic;
-                    
-                    OneNNAcc = OneNNClassifierED(DS);
+
+                    if DistanceIndex>=46
+                        OneNNAcc = OneNNClassifierSimilarity(DS, DistanceIndex);
+                    else
+                        OneNNAcc = OneNNClassifierDissimilarity(DS, DistanceIndex);
+                    end
                     
                     Results(i,1) = OneNNAcc;
-                    Results(i,2) = toc;
-                    
-                    dlmwrite( strcat('RESULTS_RunOneNNClassifier_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
-            
+   
             end
-           
+            dlmwrite( strcat('RESULTS_RunOneNNClassifier_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
+       
     end
     
 end
