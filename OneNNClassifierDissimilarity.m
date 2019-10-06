@@ -41,7 +41,7 @@ function acc = OneNNClassifierDissimilarity(DS, DistanceIndex)
             elseif DistanceIndex==14
                 distance = emanon3(compare_to_this, classify_this); 
             elseif DistanceIndex==15
-                distance = clark(compare_to_this, classify_this); 
+                distance = clark(compare_to_this, classify_this) 
             elseif DistanceIndex==16
                 distance = soergel(compare_to_this, classify_this); 
             elseif DistanceIndex==17
@@ -104,6 +104,10 @@ function acc = OneNNClassifierDissimilarity(DS, DistanceIndex)
                 distance = emanon4(compare_to_this, classify_this);  
             end
 
+            if distance==0 || isnan(distance) || isinf(distance) || ~isreal(distance) || ~isscalar(distance)
+               error('########### ERROR #############')
+            end
+            
             if distance < best_so_far
                 class = DS.TrainClassLabels(i);
                 best_so_far = distance;

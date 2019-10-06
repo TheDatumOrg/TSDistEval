@@ -22,9 +22,13 @@ function acc = OneNNClassifierSimilarity(DS, DistanceIndex)
             elseif DistanceIndex==47
                 distance = harmonicmean(compare_to_this, classify_this);
             elseif DistanceIndex==48
-                distance = fidelity(compare_to_this, classify_this,'cityblock');
+                distance = fidelity(compare_to_this, classify_this);
             elseif DistanceIndex==49
                 distance = kumarhassebrook(compare_to_this, classify_this);
+            end
+            
+            if distance==0 || isnan(distance) || isinf(distance) || ~isreal(distance) || ~isscalar(distance)
+               error('########### ERROR #############')
             end
             
             if distance > best_so_far

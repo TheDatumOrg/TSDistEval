@@ -15,7 +15,7 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
     % 12 - Divergence               GOOD
     % 13 - Emanon2                  GOOD
     % 14 - Emanon3                  GOOD
-    % 15 - Clark                    GOOD
+    % 15 - Clark                    GOOD (PROBLEM!)
     % 16 - Soergel                  GOOD (same resutls for all pairs)
     % 17 - Canberra                 GOOD
     % 18 - Additive_symm_chi        GOOD
@@ -50,7 +50,7 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
     % Similarities
     % 46 - inner product (similarity)   GOOD
     % 47 - Harnominc mean (similarity)  GOOD
-    % 48 - Fidelity (similarity)        GOOD
+    % 48 - Fidelity (similarity)        GOOD (PROBLEM!!)
     % 49 - Kumar Hassebrook         GOOD
 
     Methods = [cellstr('ED'), 'SQRTED', 'ABSED', 'Manhattan', 'Jaccard', 'Dice', 'AVG_l1_linf', 'Lorentzian' ...
