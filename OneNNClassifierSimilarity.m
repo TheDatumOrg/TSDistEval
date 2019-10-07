@@ -18,11 +18,15 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
             
             compare_to_this = DS.Train(i,:);
 
+            compare_to_this=mat2gray(compare_to_this);
+            classify_this=mat2gray(classify_this);
+            
             % 46 - inner product (similarity)   GOOD
             % 47 - Harnominc mean (similarity)  GOOD
             % 48 - Fidelity (similarity)        GOOD
             % 49 - Kumar Hassebrook         GOOD
     
+            
             if DistanceIndex==46
                 distance = innerproduct(compare_to_this, classify_this);
             elseif DistanceIndex==47

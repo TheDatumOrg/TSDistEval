@@ -94,7 +94,7 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                     Results(i,6) = complexdistances;
    
             end
-            dlmwrite( strcat('RESULTS_RunOneNNClassifier_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
+            dlmwrite( strcat('RESULTS_RunOneNNClassifier_MinMaxNorm_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
        
     end
     
