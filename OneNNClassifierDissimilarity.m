@@ -18,8 +18,10 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
             
             compare_to_this = DS.Train(i,:);
     
-            compare_to_this=mat2gray(compare_to_this);
-            classify_this=mat2gray(classify_this);
+            %compare_to_this=mat2gray(compare_to_this);
+            %classify_this=mat2gray(classify_this);
+            compare_to_this = minmaxnormalization(compare_to_this);
+            classify_this = minmaxnormalization(classify_this);
 
             if DistanceIndex==1
                 distance = euclidean(compare_to_this, classify_this);
