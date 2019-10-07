@@ -94,8 +94,12 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                     Results(i,6) = complexdistances;
    
             end
+            % z-normalization
+            dlmwrite( strcat('RESULTS_RunOneNNClassifier_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
+            % MinMax-normalization
             dlmwrite( strcat('RESULTS_RunOneNNClassifier_MinMaxNorm_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
-       
+            % Scale-normalization
+            dlmwrite( strcat('RESULTS_RunOneNNClassifier_ScaleNorm_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
     end
     
 end
