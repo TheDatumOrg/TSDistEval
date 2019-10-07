@@ -71,7 +71,7 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
     
     [Datasets, DSOrder] = sort(Datasets);
 
-    Results = zeros(length(Datasets),1);
+    Results = zeros(length(Datasets),6);
     
     for i = 1:length(Datasets)
 
@@ -81,12 +81,17 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                     DS = LoadUCRdataset(char(Datasets(i)));
 
                     if DistanceIndex>=46
-                        OneNNAcc = OneNNClassifierSimilarity(DS, DistanceIndex);
+                        [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierSimilarity(DS, DistanceIndex);
                     else
-                        OneNNAcc = OneNNClassifierDissimilarity(DS, DistanceIndex);
+                        [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierDissimilarity(DS, DistanceIndex);
                     end
                     
-                    Results(i,1) = OneNNAcc;
+                    Results(i,1) = acc;
+                    Results(i,2) = issues;
+                    Results(i,3) = zerodistances;
+                    Results(i,4) = nandistances;
+                    Results(i,5) = infdistances;
+                    Results(i,6) = complexdistances;
    
             end
             dlmwrite( strcat('RESULTS_RunOneNNClassifier_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');

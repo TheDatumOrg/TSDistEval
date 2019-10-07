@@ -1,5 +1,11 @@
-function acc = OneNNClassifierDissimilarity(DS, DistanceIndex)
+function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierDissimilarity(DS, DistanceIndex)
     
+    issues = 0;
+    zerodistances = 0;
+    nandistances = 0;
+    infdistances = 0;
+    complexdistances = 0;
+
     acc = 0;
     
     for id = 1 : DS.TestInstancesCount
@@ -104,17 +110,41 @@ function acc = OneNNClassifierDissimilarity(DS, DistanceIndex)
                 distance = emanon4(compare_to_this, classify_this);  
             end
 
-            if distance==0 || isnan(distance) || isinf(distance)
+            if distance==0
+                zerodistances=1;
+                issues=1;
+                disp(distance)
+                disp(id)
+                disp(i)
+                disp('*********** WARNING ************')
+                
+            end
+            if isnan(distance)
+                nandistances=1;
+                issues=1;
+                disp(distance)
+                disp(id)
+                disp(i)
+                disp('*********** WARNING ************')
+            end            
+            
+            if isinf(distance)
+                infdistances=1;
+                issues=1;
                 disp(distance)
                 disp(id)
                 disp(i)
                 disp('*********** WARNING ************')
             end
-            if ~isreal(distance) || ~isscalar(distance)
+            
+            if ~isreal(distance)
+                distance = abs(distance);
+                complexdistances=1;
+                issues=1;
                 disp(distance)
                 disp(id)
                 disp(i)
-               error('########### ERROR #############')
+                disp('*********** WARNING ************')
             end
             
             if distance < best_so_far
