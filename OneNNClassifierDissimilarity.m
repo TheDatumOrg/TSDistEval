@@ -146,7 +146,7 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
                 disp(i)
                 disp('*********** WARNING ************')
             end
-            disp(distance)
+            
             if distance < best_so_far
                 class = DS.TrainClassLabels(i);
                 best_so_far = distance;
