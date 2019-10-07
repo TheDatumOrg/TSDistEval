@@ -22,6 +22,8 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
             %classify_this=mat2gray(classify_this);
             compare_to_this = minmaxnormalization(compare_to_this);
             classify_this = minmaxnormalization(classify_this);
+            
+            [compare_to_this,classify_this] = scale_d(compare_to_this,classify_this);
 
             if DistanceIndex==1
                 distance = euclidean(compare_to_this, classify_this);

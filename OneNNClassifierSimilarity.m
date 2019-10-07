@@ -23,6 +23,8 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
             compare_to_this = minmaxnormalization(compare_to_this);
             classify_this = minmaxnormalization(classify_this);
             
+            [compare_to_this,classify_this] = scale_d(compare_to_this,classify_this);
+            
             % 46 - inner product (similarity)   GOOD
             % 47 - Harnominc mean (similarity)  GOOD
             % 48 - Fidelity (similarity)        GOOD
