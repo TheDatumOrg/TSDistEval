@@ -29,8 +29,11 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
             % ScaleNorm
             %[compare_to_this,classify_this] = scale_d(compare_to_this,classify_this);
 
-            compare_to_this = sigmoidnormalization(compare_to_this);
-            classify_this = sigmoidnormalization(classify_this);
+            %compare_to_this = sigmoidnormalization(compare_to_this);
+            %classify_this = sigmoidnormalization(classify_this);
+            
+            compare_to_this = tanhnormalization(compare_to_this);
+            classify_this = tanhnormalization(classify_this);
             
             % 46 - inner product (similarity)   GOOD
             % 47 - Harnominc mean (similarity)  GOOD
