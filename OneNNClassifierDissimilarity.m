@@ -20,8 +20,8 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
     
             %compare_to_this=mat2gray(compare_to_this);
             %classify_this=mat2gray(classify_this);
-            compare_to_this = minmaxnormalization(compare_to_this);
-            classify_this = minmaxnormalization(classify_this);
+            %compare_to_this = minmaxnormalization(compare_to_this);
+            %classify_this = minmaxnormalization(classify_this);
             
             [compare_to_this,classify_this] = scale_d(compare_to_this,classify_this);
 
