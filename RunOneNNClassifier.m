@@ -19,7 +19,7 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex, N
     % Dissimilarity Methods over pairs of probability density functions
     % 1 - Euclidean                 GOOD
     % 2 - Squared Euclidean         GOOD
-    % 3 - Absolute Euclidean        GOOD (not yet found in paper)
+    % 3 - DISSIM (java code)        GOOD 
     % 4 - Manhattan                 GOOD
     % 5 - Jaccard                   GOOD (similar to tanimoto)
     % 6 - Dice                      GOOD 

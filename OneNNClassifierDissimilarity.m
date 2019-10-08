@@ -1,5 +1,9 @@
 function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierDissimilarity(DS, DistanceIndex,  NormalizationIndex)
     
+    javaaddpath('./timeseries-1.0-SNAPSHOT.jar');
+    javaaddpath('./simcompare.jar');
+    obj = edu.uchicago.cs.tsdb.Distance;
+    
     issues = 0;
     zerodistances = 0;
     nandistances = 0;
@@ -41,22 +45,13 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
                 classify_this = TanhNorm(classify_this);
             elseif NormalizationIndex==9
             end
-
-            %compare_to_this = sigmoidnormalization(compare_to_this);
-            %classify_this = sigmoidnormalization(classify_this);
-            
-            %compare_to_this = tanhnormalization(compare_to_this);
-            %classify_this = tanhnormalization(classify_this);
-            
-            compare_to_this = mediannormalization(compare_to_this);
-            classify_this = mediannormalization(classify_this);
             
             if DistanceIndex==1
                 distance = euclidean(compare_to_this, classify_this);
             elseif DistanceIndex==2
                 distance = squared_euclidean(compare_to_this, classify_this);
             elseif DistanceIndex==3
-                distance = abs_euclidean(compare_to_this, classify_this);
+                distance = obj.DissimDistance(compare_to_this, classify_this);    
             elseif DistanceIndex==4
                 distance = manhattan(compare_to_this, classify_this);     
             elseif DistanceIndex==5
@@ -142,7 +137,7 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
             elseif DistanceIndex==45
                 distance = emanon4(compare_to_this, classify_this);  
             elseif DistanceIndex==46
-                distance = PairWiseScalingDistance(compare_to_this, classify_this);  
+                distance = PairWiseScalingDistance(compare_to_this, classify_this);     
             end
 
             if distance==0
