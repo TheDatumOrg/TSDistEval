@@ -1,4 +1,20 @@
-function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)  
+function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex, NormalizationIndex)  
+    
+    % Normalization
+    % 1 - ZScoreNorm
+    % 2 - MinMaxNorm
+    % 3 - UnitLengthNorm
+    % 4 - MeanNorm
+    % 5 - MedianNorm
+    % 6 - AdaptiveNorm
+    % 7 - Sigmoid
+    % 8 - Tanh
+    % 9 - SlidingZScore (ONLY FOR ED/Manhattan - needs tuning)
+    
+    Normalizations = [cellstr('ZScoreNorm'), 'MinMaxNorm', 'UnitLengthNorm', 'MeanNorm', 'MedianNorm', 'AdaptiveNorm' ...
+        'Sigmoid', 'Tanh', 'SlidingZScore'];
+    
+    addpath(genpath('normalizations/.'));
     
     % Dissimilarity Methods over pairs of probability density functions
     % 1 - Euclidean                 GOOD
@@ -46,19 +62,20 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
     % 43 - Czekanowski              GOOD
     % 44 - Jansen_shannon           GOOD
     % 45 - Emanon4                  GOOD
+    % 46 - PairWiseScalingDistance  GOOD
     
     % Similarities
-    % 46 - inner product (similarity)   GOOD
-    % 47 - Harnominc mean (similarity)  GOOD
-    % 48 - Fidelity (similarity)        GOOD (PROBLEM!!)
-    % 49 - Kumar Hassebrook         GOOD
+    % 47 - inner product (similarity)   GOOD
+    % 48 - Harnominc mean (similarity)  GOOD
+    % 49 - Fidelity (similarity)        GOOD (PROBLEM!!)
+    % 50 - Kumar Hassebrook             GOOD
 
     Methods = [cellstr('ED'), 'SQRTED', 'ABSED', 'Manhattan', 'Jaccard', 'Dice', 'AVG_l1_linf', 'Lorentzian' ...
         'Chebyshev', 'Hellinger', 'KumarJohnson', 'Divergence', 'Emanon2', 'Emanon3', 'Clark', 'Soergel' ...
         'Canberra', 'Additive_symm_chi', 'Squared_chi', 'Max_symmetric_chi', 'Min_symmetric_chi' ...
         'Kulczynski', 'Tanimoto', 'Wavehedges', 'Taneja', 'Topsoe', 'Vicis_wave_hedges', 'Square_chord', 'Kullback' ...
         'Neyman', 'K_divergence', 'Jeffrey', 'Jensen_difference', 'Pearson', 'Sorensen', 'Prob_symmetric_chi' ...
-        'Gower','Intersection', 'Motyka', 'Cosine', 'Matusita', 'Bhattacharyya', 'Czekanowski', 'Jansen_shannon', 'Emanon4' ...
+        'Gower','Intersection', 'Motyka', 'Cosine', 'Matusita', 'Bhattacharyya', 'Czekanowski', 'Jansen_shannon', 'Emanon4', 'PairWiseScalingDistance' ...
         'InnerProduct', 'HarmonicMean', 'Fidelity', 'KumarHassebrook'];
     
     addpath(genpath('distancemeasures/.'));
@@ -69,9 +86,10 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                      
     % Sort Datasets
     
-    [Datasets, DSOrder] = sort(Datasets);
+    [Datasets, ~] = sort(Datasets);
 
-    Results = zeros(length(Datasets),6);
+    Results1 = zeros(length(Datasets),1);
+    Results2 = zeros(length(Datasets),5);
     
     for i = 1:length(Datasets)
 
@@ -80,34 +98,23 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                     disp(['Dataset being processed: ', char(Datasets(i))]);
                     DS = LoadUCRdataset(char(Datasets(i)));
 
-                    if DistanceIndex>=46
-                        [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierSimilarity(DS, DistanceIndex);
+                    if DistanceIndex>=47
+                        [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierSimilarity(DS, DistanceIndex, NormalizationIndex);
                     else
-                        [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierDissimilarity(DS, DistanceIndex);
+                        [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierDissimilarity(DS, DistanceIndex, NormalizationIndex);
                     end
                     
-                    Results(i,1) = acc;
-                    Results(i,2) = issues;
-                    Results(i,3) = zerodistances;
-                    Results(i,4) = nandistances;
-                    Results(i,5) = infdistances;
-                    Results(i,6) = complexdistances;
+                    Results1(i,1) = acc;
+                    Results2(i,1) = issues;
+                    Results2(i,2) = zerodistances;
+                    Results2(i,3) = nandistances;
+                    Results2(i,4) = infdistances;
+                    Results2(i,5) = complexdistances;
    
             end
             % z-normalization
-            dlmwrite( strcat('RESULTS_RunOneNNClassifier_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
-            % MinMax-normalization
-            dlmwrite( strcat('RESULTS_RunOneNNClassifier_MinMaxNorm_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
-            % Scale-normalization
-            dlmwrite( strcat('RESULTS_RunOneNNClassifier_ScaleNorm_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
-            % Sigmoid-normalization
-            dlmwrite( strcat('RESULTS_RunOneNNClassifier_Sigmoid_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
-            % Tanh-normalization
-            dlmwrite( strcat('RESULTS_RunOneNNClassifier_Tanh_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
-            % Median-normalization
-            dlmwrite( strcat('RESULTS_RunOneNNClassifier_Median_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
-           
-    
+            dlmwrite( strcat('./RESULTS/RESULTS_RunONNC_ACCURACY_', char(Methods(DistanceIndex)), '_', char(Normalizations(NormalizationIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results1, 'delimiter', ',');    
+            dlmwrite( strcat('./RESULTS/RESULTS_RunONNC_ISSUES_', char(Methods(DistanceIndex)), '_', char(Normalizations(NormalizationIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results2, 'delimiter', ',');    
     
     end
     

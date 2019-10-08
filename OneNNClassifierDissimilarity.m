@@ -1,4 +1,4 @@
-function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierDissimilarity(DS, DistanceIndex)
+function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierDissimilarity(DS, DistanceIndex,  NormalizationIndex)
     
     issues = 0;
     zerodistances = 0;
@@ -18,16 +18,29 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
             
             compare_to_this = DS.Train(i,:);
     
-            % MinMax goes to 0 1
-            %compare_to_this=mat2gray(compare_to_this);
-            %classify_this=mat2gray(classify_this);
-            
-            % MinMax 
-            %compare_to_this = minmaxnormalization(compare_to_this);
-            %classify_this = minmaxnormalization(classify_this);
-            
-            % ScaleNorm
-            %[compare_to_this,classify_this] = scale_d(compare_to_this,classify_this);
+            if NormalizationIndex==1                
+            elseif NormalizationIndex==2
+                compare_to_this = MinMaxNorm(compare_to_this,0.001,1);
+                classify_this = MinMaxNorm(classify_this,0.001,1);
+            elseif NormalizationIndex==3
+                compare_to_this = UnitLengthNorm(compare_to_this);
+                classify_this = UnitLengthNorm(classify_this);
+            elseif NormalizationIndex==4
+                compare_to_this = MeanNorm(compare_to_this);
+                classify_this = MeanNorm(classify_this);
+            elseif NormalizationIndex==5
+                compare_to_this = MedianNorm(compare_to_this);
+                classify_this = MedianNorm(classify_this);
+            elseif NormalizationIndex==6
+                [compare_to_this,classify_this] = AdaptiveScaling(compare_to_this,classify_this);
+            elseif NormalizationIndex==7    
+                compare_to_this = SigmoidNorm(compare_to_this);
+                classify_this = SigmoidNorm(classify_this);
+            elseif NormalizationIndex==8
+                compare_to_this = TanhNorm(compare_to_this);
+                classify_this = TanhNorm(classify_this);
+            elseif NormalizationIndex==9
+            end
 
             %compare_to_this = sigmoidnormalization(compare_to_this);
             %classify_this = sigmoidnormalization(classify_this);
@@ -128,6 +141,8 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
                 distance = jansen_shannon(compare_to_this, classify_this);  
             elseif DistanceIndex==45
                 distance = emanon4(compare_to_this, classify_this);  
+            elseif DistanceIndex==46
+                distance = PairWiseScalingDistance(compare_to_this, classify_this);  
             end
 
             if distance==0

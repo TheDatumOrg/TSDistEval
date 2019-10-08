@@ -18,39 +18,43 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
             
             compare_to_this = DS.Train(i,:);
 
-            % MinMax goes to 0 1
-            %compare_to_this=mat2gray(compare_to_this);
-            %classify_this=mat2gray(classify_this);
-            
-            % MinMax 
-            %compare_to_this = minmaxnormalization(compare_to_this);
-            %classify_this = minmaxnormalization(classify_this);
-            
-            % ScaleNorm
-            %[compare_to_this,classify_this] = scale_d(compare_to_this,classify_this);
+            if NormalizationIndex==1                
+            elseif NormalizationIndex==2
+                compare_to_this = MinMaxNorm(compare_to_this,0.001,1);
+                classify_this = MinMaxNorm(classify_this,0.001,1);
+            elseif NormalizationIndex==3
+                compare_to_this = UnitLengthNorm(compare_to_this);
+                classify_this = UnitLengthNorm(classify_this);
+            elseif NormalizationIndex==4
+                compare_to_this = MeanNorm(compare_to_this);
+                classify_this = MeanNorm(classify_this);
+            elseif NormalizationIndex==5
+                compare_to_this = MedianNorm(compare_to_this);
+                classify_this = MedianNorm(classify_this);
+            elseif NormalizationIndex==6
+                [compare_to_this,classify_this] = AdaptiveScaling(compare_to_this,classify_this);
+            elseif NormalizationIndex==7    
+                compare_to_this = SigmoidNorm(compare_to_this);
+                classify_this = SigmoidNorm(classify_this);
+            elseif NormalizationIndex==8
+                compare_to_this = TanhNorm(compare_to_this);
+                classify_this = TanhNorm(classify_this);
+            elseif NormalizationIndex==9
+            end
 
-            %compare_to_this = sigmoidnormalization(compare_to_this);
-            %classify_this = sigmoidnormalization(classify_this);
-            
-            %compare_to_this = tanhnormalization(compare_to_this);
-            %classify_this = tanhnormalization(classify_this);
-            
-            compare_to_this = mediannormalization(compare_to_this);
-            classify_this = mediannormalization(classify_this);
-            
             % 46 - inner product (similarity)   GOOD
             % 47 - Harnominc mean (similarity)  GOOD
             % 48 - Fidelity (similarity)        GOOD
             % 49 - Kumar Hassebrook         GOOD
     
             
-            if DistanceIndex==46
+            if DistanceIndex==47
                 distance = innerproduct(compare_to_this, classify_this);
-            elseif DistanceIndex==47
-                distance = harmonicmean(compare_to_this, classify_this);
             elseif DistanceIndex==48
-                distance = fidelity(compare_to_this, classify_this);
+                distance = harmonicmean(compare_to_this, classify_this);
             elseif DistanceIndex==49
+                distance = fidelity(compare_to_this, classify_this);
+            elseif DistanceIndex==50
                 distance = kumarhassebrook(compare_to_this, classify_this);
             end
             
