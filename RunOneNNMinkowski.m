@@ -8,6 +8,8 @@ function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex)
     
     [Datasets, DSOrder] = sort(Datasets);  
     
+    addpath(genpath('distancemeasures/.'));
+
     Results = zeros(length(Datasets),3);
 
     for i = 1:length(Datasets)
