@@ -104,6 +104,8 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
             dlmwrite( strcat('RESULTS_RunOneNNClassifier_Sigmoid_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
             % Tanh-normalization
             dlmwrite( strcat('RESULTS_RunOneNNClassifier_Tanh_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
+            % Median-normalization
+            dlmwrite( strcat('RESULTS_RunOneNNClassifier_Median_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
            
     
     

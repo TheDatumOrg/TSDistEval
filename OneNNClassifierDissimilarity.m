@@ -32,8 +32,11 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
             %compare_to_this = sigmoidnormalization(compare_to_this);
             %classify_this = sigmoidnormalization(classify_this);
             
-            compare_to_this = tanhnormalization(compare_to_this);
-            classify_this = tanhnormalization(classify_this);
+            %compare_to_this = tanhnormalization(compare_to_this);
+            %classify_this = tanhnormalization(classify_this);
+            
+            compare_to_this = mediannormalization(compare_to_this);
+            classify_this = mediannormalization(classify_this);
             
             if DistanceIndex==1
                 distance = euclidean(compare_to_this, classify_this);
