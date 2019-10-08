@@ -18,12 +18,19 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
             
             compare_to_this = DS.Train(i,:);
 
+            % MinMax goes to 0 1
             %compare_to_this=mat2gray(compare_to_this);
             %classify_this=mat2gray(classify_this);
+            
+            % MinMax 
             %compare_to_this = minmaxnormalization(compare_to_this);
             %classify_this = minmaxnormalization(classify_this);
             
-            [compare_to_this,classify_this] = scale_d(compare_to_this,classify_this);
+            % ScaleNorm
+            %[compare_to_this,classify_this] = scale_d(compare_to_this,classify_this);
+
+            compare_to_this = sigmoidnormalization(compare_to_this);
+            classify_this = sigmoidnormalization(classify_this);
             
             % 46 - inner product (similarity)   GOOD
             % 47 - Harnominc mean (similarity)  GOOD

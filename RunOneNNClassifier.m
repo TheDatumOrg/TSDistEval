@@ -100,6 +100,11 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
             dlmwrite( strcat('RESULTS_RunOneNNClassifier_MinMaxNorm_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
             % Scale-normalization
             dlmwrite( strcat('RESULTS_RunOneNNClassifier_ScaleNorm_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
+            % Sigmoid-normalization
+            dlmwrite( strcat('RESULTS_RunOneNNClassifier_Sigmoid_', char(Methods(DistanceIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
+            
+    
+    
     end
     
 end
