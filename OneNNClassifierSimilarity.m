@@ -1,4 +1,4 @@
-function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierSimilarity(DS, DistanceIndex)
+function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierSimilarity(DS, DistanceIndex, NormalizationIndex)
     
     issues = 0;
     zerodistances = 0;
