@@ -178,6 +178,7 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
             end
             
             if ~isreal(distance)
+                disp(distance);
                 distance = abs(distance);
                 complexdistances=1;
                 issues=1;
