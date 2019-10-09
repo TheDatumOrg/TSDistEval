@@ -1,5 +1,21 @@
-function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex)  
+function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex, NormalizationIndex)  
 
+    % Normalization
+    % 1 - ZScoreNorm
+    % 2 - MinMaxNorm
+    % 3 - UnitLengthNorm
+    % 4 - MeanNorm
+    % 5 - MedianNorm
+    % 6 - AdaptiveNorm
+    % 7 - Sigmoid
+    % 8 - Tanh
+    % 9 - SlidingZScore (ONLY FOR ED/Manhattan - needs tuning)
+    
+    Normalizations = [cellstr('ZScoreNorm'), 'MinMaxNorm', 'UnitLengthNorm', 'MeanNorm', 'MedianNorm', 'AdaptiveNorm' ...
+        'Sigmoid', 'Tanh', 'SlidingZScore'];
+    
+    addpath(genpath('normalizations/.'));
+    
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
     dir_struct = dir('./UCR2018-NEW/');
     Datasets = {dir_struct(3:130).name};
@@ -28,14 +44,14 @@ function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex)
 
                         gammaIter
                         tic;
-                        acc = LOOCMinkowski(DS,gammaValues(gammaIter));
+                        acc = LOOCMinkowski(DS,gammaValues(gammaIter), NormalizationIndex);
                         LeaveOneOutRuntimes(i,gammaIter) = toc;
                         LeaveOneOutAccuracies(i,gammaIter) = acc;
                     end
                     
                     [MaxLeaveOneOutAcc,MaxLeaveOneOutAccGamma] = max(LeaveOneOutAccuracies(i,:));
 
-                    OneNNAcc = OneNNClassifierMinkowski(DS, gammaValues(MaxLeaveOneOutAccGamma));
+                    OneNNAcc = OneNNClassifierMinkowski(DS, gammaValues(MaxLeaveOneOutAccGamma), NormalizationIndex);
                                  
                     Results(i,1) = gammaValues(MaxLeaveOneOutAccGamma);
                     Results(i,2) = MaxLeaveOneOutAcc;
@@ -43,7 +59,7 @@ function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex)
                     
                     
             end
-            dlmwrite( strcat('RESULTS_RunOneNNMinkowski_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex) ), Results, 'delimiter', '\t');
+            dlmwrite( strcat('RESULTS_RunOneNNMinkowski_', char(Normalizations(NormalizationIndex)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex) ), Results, 'delimiter', '\t');
    
             
     end
