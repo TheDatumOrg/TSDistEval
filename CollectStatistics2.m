@@ -23,7 +23,7 @@ function CollectStatistics2(DataSetStartIndex, DataSetEndIndex)
         Results = [];
         for k = 1:length(Methods)
             ResultsTmp = dlmread( strcat('./RESULTS/RESULTS_RunONNC_ACCURACY_', char(Methods(k)), '_', char(Normalizations(w)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)) );
-            Results = [Results;ResultsTmp];        
+            Results = [Results,ResultsTmp];        
         end
         dlmwrite( strcat( './RESULTSFINAL_RunONNC_ACCURACY_', char(Normalizations(w)),'_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
     
