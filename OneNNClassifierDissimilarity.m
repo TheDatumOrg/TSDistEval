@@ -156,7 +156,7 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
                 disp(distance)
                 disp(id)
                 disp(i)
-                disp('*********** WARNING ************')
+                disp('*********** 0 WARNING ************')
                 
             end
             if isnan(distance)
@@ -165,7 +165,7 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
                 disp(distance)
                 disp(id)
                 disp(i)
-                disp('*********** WARNING ************')
+                disp('*********** NaN WARNING ************')
             end            
 
             if isinf(distance)
@@ -174,7 +174,7 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
                 disp(distance)
                 disp(id)
                 disp(i)
-                disp('*********** WARNING ************')
+                disp('*********** Inf WARNING ************')
             end
             
             if ~isreal(distance)
@@ -184,7 +184,7 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
                 disp(distance)
                 disp(id)
                 disp(i)
-                disp('*********** WARNING ************')
+                disp('*********** Complex WARNING ************')
             end
             
             if distance < best_so_far
