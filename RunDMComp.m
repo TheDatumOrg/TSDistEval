@@ -14,7 +14,7 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
     % 11 - TQuEST       10 Parameters
     % 12 - Swale        15 Parameters      DONE
     % 13 - KDTW         20 Parameters      DONE WITH RUNDM - NO RESULTS
-    % 14 - ERP          2 Empty Parameters
+    % 14 - ERP          2 Empty Parameters RUNNING
     Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWED', 'DISSIM', 'TQuEST', 'Swale', 'KDTW', 'ERP'];
 
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets

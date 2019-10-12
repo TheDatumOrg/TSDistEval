@@ -1,7 +1,7 @@
 function RunOneNNWITHDM(DataSetStartIndex, DataSetEndIndex, DistanceIndex)  
-    
-    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWED', 'DISSIM', 'TQuEST', 'Swale'];
 
+    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWED', 'DISSIM', 'TQuEST', 'Swale', 'KDTW', 'ERP'];
+    
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
     dir_struct = dir('./UCR2018-NEW/');
     Datasets = {dir_struct(3:130).name};
@@ -118,6 +118,19 @@ function [DMTRAIN,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods
                     % 
                     DMTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TrainToTest.distmatrix' ) );     
+            elseif DistanceIndex==13
+                    % For KDTW
+                    % 
+                    DMTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
+                    DMTESTTOTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TrainToTest.distmatrix' ) );     
+            elseif DistanceIndex==14
+                    % For ERP
+                    % 
+                    DMTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
+                    DMTESTTOTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TrainToTest.distmatrix' ) );     
+            
+            
+            
             end
 
 end
@@ -181,7 +194,17 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     % For Swale
                     % 
                     Params = [0.01,0.03,0.05,0.07,0.09,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];
-                    Params2 = 0;          
+                    Params2 = 0;             
+            elseif DistanceIndex==13
+                    % For KDTW
+                    % 
+                    Params = [2^-15,2^-14,2^-13,2^-12,2^-11,2^-10,2^-9,2^-8,2^-7,2^-6,2^-5,2^-4,2^-3,2^-2,2^-1,2^0,2^1,2^2,2^3,2^4];
+                    Params2 = 0; 
+            elseif DistanceIndex==14
+                    % For ERP
+                    % 
+                    Params = 0;
+                    Params2 = 0; 
             end
 
 
