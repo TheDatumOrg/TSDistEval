@@ -9,10 +9,9 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex, N
     % 6 - AdaptiveNorm
     % 7 - Sigmoid
     % 8 - Tanh
-    % 9 - SlidingZScore (ONLY FOR ED/Manhattan - needs tuning)
     
     Normalizations = [cellstr('ZScoreNorm'), 'MinMaxNorm', 'UnitLengthNorm', 'MeanNorm', 'MedianNorm', 'AdaptiveNorm' ...
-        'Sigmoid', 'Tanh', 'SlidingZScore'];
+        'Sigmoid', 'Tanh'];
     
     addpath(genpath('normalizations/.'));
     

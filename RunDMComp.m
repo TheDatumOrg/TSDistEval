@@ -1,19 +1,19 @@
 function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Param2, Param1prime, Param2prime)
 
     % Distance Matrices for ED and SBD
-    % 1 - ED            1 Empty Parameter
-    % 2 - SBD           1 Empty Parameter
-    % 3 - MSM           10 Parameters
-    % 4 - DTW           22 Parameters
-    % 5 - EDR           20 Parameters
-    % 6 - SINK          20 Parameters
-    % 7 - GAK           26 Parameters
-    % 8 - LCSS          40 Parameters (20 x 2)
-    % 9 - TWED          30 Parameters (5 x 6)
-    % 10 - DISSIM       2 Empty Parameters (Script now has 2 params)
+    % 1 - ED            1 Empty Parameter  DONE
+    % 2 - SBD           1 Empty Parameter  DONE
+    % 3 - MSM           10 Parameters      DONE
+    % 4 - DTW           22 Parameters      DONE
+    % 5 - EDR           20 Parameters      DONE
+    % 6 - SINK          20 Parameters      DONE
+    % 7 - GAK           26 Parameters      DONE
+    % 8 - LCSS          40 Parameters (20 x 2) DONE WITH RUNDM - NO RESULTS
+    % 9 - TWED          30 Parameters (5 x 6)  DONE
+    % 10 - DISSIM       2 Empty Parameters DONE (Script now has 2 params)
     % 11 - TQuEST       10 Parameters
-    % 12 - Swale        15 Parameters
-    % 13 - KDTW    
+    % 12 - Swale        15 Parameters      DONE
+    % 13 - KDTW         20 Parameters      DONE WITH RUNDM - NO RESULTS
     % 14 - ERP          2 Empty Parameters
     Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWED', 'DISSIM', 'TQuEST', 'Swale', 'KDTW', 'ERP'];
 
