@@ -46,7 +46,7 @@ function RunOneNNTunedNormalizations(DataSetStartIndex, DataSetEndIndex, Normali
                         elseif NormalizationIndex==2
                             gammaValues = [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100];
                             tic;
-                            acc = LOOCTunedNormalizations(DS, NormalizationIndex, floor(gammaValues(gammaIter)/100 * length(DS.Train(1,:)));
+                            acc = LOOCTunedNormalizations(DS, NormalizationIndex, floor(gammaValues(gammaIter)/100 * length(DS.Train(1,:))));
                             LeaveOneOutRuntimes(i,gammaIter) = toc;
                             LeaveOneOutAccuracies(i,gammaIter) = acc;
                         end
