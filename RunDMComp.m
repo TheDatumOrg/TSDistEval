@@ -8,10 +8,10 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
     % 5 - EDR           20 Parameters      DONE
     % 6 - SINK          20 Parameters      DONE
     % 7 - GAK           26 Parameters      DONE
-    % 8 - LCSS          40 Parameters (20 x 2) DONE WITH RUNDM - NO RESULTS
+    % 8 - LCSS          20 Parameters (20 x 1) DONE WITH RUNDM - NO RESULTS
     % 9 - TWED          30 Parameters (5 x 6)  DONE
     % 10 - DISSIM       2 Empty Parameters DONE (Script now has 2 params)
-    % 11 - TQuEST       10 Parameters
+    % 11 - TQuEST       20 Parameters
     % 12 - Swale        15 Parameters      DONE
     % 13 - KDTW         20 Parameters      DONE WITH RUNDM - NO RESULTS
     % 14 - ERP          2 Empty Parameters RUNNING
