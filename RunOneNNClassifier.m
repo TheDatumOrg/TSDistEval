@@ -16,6 +16,8 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex, N
     addpath(genpath('normalizations/.'));
     
     % Dissimilarity Methods over pairs of probability density functions
+    % Minkowski needs tuning so not included here - different script
+    % Abs Euclidean was removed as it gives same results as ED (52 overall)
     % 1 - Euclidean                 GOOD
     % 2 - Squared Euclidean         GOOD
     % 3 - DISSIM (java code)        GOOD 
@@ -75,7 +77,8 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex, N
         'Kulczynski', 'Tanimoto', 'Wavehedges', 'Taneja', 'Topsoe', 'Vicis_wave_hedges', 'Square_chord', 'Kullback' ...
         'Neyman', 'K_divergence', 'Jeffrey', 'Jensen_difference', 'Pearson', 'Sorensen', 'Prob_symmetric_chi' ...
         'Gower','Intersection', 'Motyka', 'Cosine', 'Matusita', 'Bhattacharyya', 'Czekanowski', 'Jansen_shannon', 'Emanon4', 'PairWiseScalingDistance' ...
-        'InnerProduct', 'HarmonicMean', 'Fidelity', 'KumarHassebrook'];
+        'InnerProduct', 'HarmonicMean', 'Fidelity', 'KumarHassebrook' ...
+        'NCC', 'NCCu', 'NCCb', 'NCCc'];
     
     addpath(genpath('distancemeasures/.'));
     
