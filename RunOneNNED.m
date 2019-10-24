@@ -15,8 +15,8 @@ function RunOneNNED(DataSetStartIndex, DataSetEndIndex)
             if (i>=DataSetStartIndex && i<=DataSetEndIndex)
 
                     disp(['Dataset being processed: ', char(Datasets(i))]);
-                    %DS = LoadUCRdataset(char(Datasets(i)));
-                    DS = LoadOtherdatasetLocal(char(Datasets(i)));
+                    DS = LoadUCRdataset(char(Datasets(i)));
+                    %DS = LoadOtherdatasetLocal(char(Datasets(i)));
                     
                     tic;
                     OneNNAcc = OneNNClassifierED(DS);
