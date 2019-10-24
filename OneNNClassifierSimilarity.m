@@ -63,6 +63,14 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
                 distance = fidelity(compare_to_this, classify_this);
             elseif DistanceIndex==50
                 distance = kumarhassebrook(compare_to_this, classify_this);
+            elseif DistanceIndex==51
+                distance = max(NCC(compare_to_this, classify_this));
+            elseif DistanceIndex==52
+                distance = max(NCCu(compare_to_this, classify_this));
+            elseif DistanceIndex==53
+                distance = max(NCCb(compare_to_this, classify_this));
+            elseif DistanceIndex==54
+                distance = max(NCCc(compare_to_this, classify_this));
             end
             
             if distance==0

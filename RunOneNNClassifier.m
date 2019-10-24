@@ -70,6 +70,12 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex, N
     % 48 - Harnominc mean (similarity)  GOOD
     % 49 - Fidelity (similarity)        GOOD (PROBLEM!!)
     % 50 - Kumar Hassebrook             GOOD
+    
+    % NCC measures
+    % 51 - NCC 
+    % 52 - NCCu
+    % 53 - NCCb
+    % 54 - NCCc
 
     Methods = [cellstr('ED'), 'SQRTED', 'DISSIM', 'Manhattan', 'Jaccard', 'Dice', 'AVG_l1_linf', 'Lorentzian' ...
         'Chebyshev', 'Hellinger', 'KumarJohnson', 'Divergence', 'Emanon2', 'Emanon3', 'Clark', 'Soergel' ...
