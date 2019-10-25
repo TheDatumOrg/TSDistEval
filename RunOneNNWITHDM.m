@@ -186,7 +186,7 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     Params = [1.0];
                     % nu
                     %Params2 = [0.00001, 0.0001, 0.001, 0.01, 0.1, 1];
-                    Params2 = [0.001];
+                    Params2 = [0.0001];
             elseif DistanceIndex==10
                     % For DISSIM
                     % 
