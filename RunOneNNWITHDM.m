@@ -183,7 +183,7 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     % 
                     % lambda
                     %Params = [0, 0.25, 0.5, 0.75, 1.0];
-                    Params = [0.25];
+                    Params = [0.5];
                     % nu
                     %Params2 = [0.00001, 0.0001, 0.001, 0.01, 0.1, 1];
                     Params2 = [0.1];
