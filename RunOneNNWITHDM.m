@@ -147,7 +147,7 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
             elseif DistanceIndex==3
                     % MSM - 10 Parameters
                     %Params = [0.01,0.1,1,10,100,0.05,0.5,5,50,500];
-                    Params = 0.1;
+                    Params = 1;
                     Params2 = 0;
             elseif DistanceIndex==4
                     % DTW - 0-20, 100 - 22 Parameters
