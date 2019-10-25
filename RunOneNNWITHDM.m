@@ -176,7 +176,7 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     Params = 5;
                     % epsilon
                     %Params2 = [0.001,0.003,0.005,0.007,0.009,0.01,0.03,0.05,0.07,0.09,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];
-                    Params2 = [0.5];
+                    Params2 = [0.1];
                     
             elseif DistanceIndex==9
                     % For TWED lambda and nu, 30 overall
