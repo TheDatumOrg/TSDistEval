@@ -1,0 +1,27 @@
+function DS = LoadOtherdatasetLocal(datasetname)
+
+    %TRAIN = load(['../../UCRArchiveFix/code/UCRArchive2018/',datasetname,'/',datasetname,'_TRAIN']);
+    %TEST  = load(['../../UCRArchiveFix/code/UCRArchive2018/',datasetname,'/',datasetname,'_TEST']);
+    
+    TRAIN = load(['./UCR2018-NEW/',datasetname,'/',datasetname,'_TRAIN']);
+    TEST  = load(['./UCR2018-NEW/',datasetname,'/',datasetname,'_TEST']);
+   
+    TRAIN_labels = TRAIN(:,1);
+    TRAIN(:,1) = [];
+    TEST_labels = TEST(:,1);
+    TEST(:,1) = [];
+
+    DS.TrainClassLabels = TRAIN_labels;
+    DS.TestClassLabels = TEST_labels;
+    DS.DataClassLabels = [TRAIN_labels;TEST_labels];
+
+    DS.Train = TRAIN;
+    DS.Test = TEST;
+    DS.Data = [TRAIN;TEST];
+
+    DS.ClassNames = unique(TRAIN_labels);
+
+    DS.TrainInstancesCount = length(DS.Train(:,1));
+    DS.TestInstancesCount = length(DS.Test(:,1));
+    DS.DataInstancesCount = length(DS.Data(:,1));
+end
