@@ -1,4 +1,4 @@
-function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Param2, Param1prime, Param2prime)
+function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Param2, Param1prime, Param2prime, Train, Test)
 
     % Distance Matrices for ED and SBD
     % 1 - ED            1 Empty Parameter
@@ -45,19 +45,27 @@ function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
                 
                 [NewParameter1, NewParameter2] = ComputeParameters(DS.Train, DistanceIndex, Params(w), Params2(wprime));
                 
-                tic;
-                DM1 = DMComp(DS.Train, DistanceIndex, NewParameter1, NewParameter2);
-                RT1 = toc;
+                if Train==1
+                    tic;
+                    DM1 = DMComp(DS.Train, DistanceIndex, NewParameter1, NewParameter2);
+                    RT1 = toc;
+
+                    dlmwrite( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)),'_', num2str(Params2(wprime)), '_Train.distmatrix' ), DM1, 'delimiter', ',');
+
+                    dlmwrite( strcat( './DM-Runtime/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)),'_', num2str(Params2(wprime)), '.rtTrain' ), RT1, 'delimiter', ',');
+
+                end
                 
-                dlmwrite( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)),'_', num2str(Params2(wprime)), '_Train.distmatrix' ), DM1, 'delimiter', ',');
-                
-                tic;
-                DM2 = DMComp_TestToTrain(DS.Test, DS.Train, DistanceIndex, NewParameter1, NewParameter2);
-                RT2 = toc;
-                
-                dlmwrite( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)),'_', num2str(Params2(wprime)), '_TestToTrain.distmatrix' ), DM2, 'delimiter', ',');
-                
-                dlmwrite( strcat( './DM-Runtime/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)),'_', num2str(Params2(wprime)), '.runtime' ), [RT1, RT2], 'delimiter', ',');
+                if Test==1
+                    tic;
+                    DM2 = DMComp_TestToTrain(DS.Test, DS.Train, DistanceIndex, NewParameter1, NewParameter2);
+                    RT2 = toc;
+
+                    dlmwrite( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)),'_', num2str(Params2(wprime)), '_TestToTrain.distmatrix' ), DM2, 'delimiter', ',');
+
+                    dlmwrite( strcat( './DM-Runtime/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)),'_', num2str(Params2(wprime)), '.rtTestToTrain' ), RT2, 'delimiter', ',');
+
+                end
                 
                 end
             end
