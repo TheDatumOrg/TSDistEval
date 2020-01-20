@@ -1,6 +1,6 @@
 function RunDMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Param2, Param1prime, Param2prime, Train, Test)
 
-    % Distance Matrices for ED and SBD
+    % Distance Matrices for:
     % 1 - ED            1 Empty Parameter
     % 2 - SBD           1 Empty Parameter
     % 3 - MSM           10 Parameters (10 x 1)
