@@ -39,7 +39,7 @@ function DM = KMComp(X, DistanceIndex, Parameter1, Parameter2)
     
     for i=1:m
         if DistanceIndex==1
-            DM(i,i) = SINK(X(i,:),X(i,:));
+            DM(i,i) = SINK(X(i,:),X(i,:),Parameter1);
         elseif DistanceIndex==2
             DM(i,i) = logGAK(X(i,:)',X(i,:)',Parameter1,0);
         elseif DistanceIndex==3
