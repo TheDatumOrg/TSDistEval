@@ -5,6 +5,7 @@ function RunKMComp(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Param1, Pa
     % 2 - GAK           26 Parameters (26 x 1)
     % 3 - KDTW          20 Parameters (20 x 1)
     %
+    %
     Methods = [cellstr('SINK'), 'GAK', 'KDTW'];
 
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
