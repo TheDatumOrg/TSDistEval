@@ -1,5 +1,6 @@
 function sim = SINK(x,y,gamma)
 % Shift INvariant Kernel
+% GRAIL paper
 
 sim = SumExpNCCc(x,y,gamma)/sqrt(SumExpNCCc(x,x,gamma) * SumExpNCCc(y,y,gamma));
 
