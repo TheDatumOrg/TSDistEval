@@ -31,7 +31,7 @@ function RunKMCompParallel(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Pa
         if (i>=DataSetStartIndex && i<=DataSetEndIndex)
 
             disp(['Dataset being processed: ', char(Datasets(i))]);
-            DS = LoadUCRdataset(char(Datasets(i)));
+            DS = LoadDownSampleddataset(char(Datasets(i)));
             
             [Params, Params2]= DistanceToParameter(DistanceIndex);
 
