@@ -44,7 +44,7 @@ function RunKMCompParallel(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Pa
                 
                 if Train==1
                     tic;
-                    DM1 = KMComp(DS.Train, DistanceIndex, NewParameter1, NewParameter2);
+                    DM1 = KMCompParallel(DS.Train, DistanceIndex, NewParameter1, NewParameter2);
                     RT1 = toc;
 
                     dlmwrite( strcat( './KM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)),'_', num2str(Params2(wprime)), '_Train.distmatrix' ), DM1, 'delimiter', ',');
@@ -55,7 +55,7 @@ function RunKMCompParallel(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Pa
                 
                 if Test==1
                     tic;
-                    DM2 = KMComp_TestToTrain(DS.Test, DS.Train, DistanceIndex, NewParameter1, NewParameter2);
+                    DM2 = KMCompParallel_TestToTrain(DS.Test, DS.Train, DistanceIndex, NewParameter1, NewParameter2);
                     RT2 = toc;
 
                     dlmwrite( strcat( './KM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Params(w)),'_', num2str(Params2(wprime)), '_TestToTrain.distmatrix' ), DM2, 'delimiter', ',');
