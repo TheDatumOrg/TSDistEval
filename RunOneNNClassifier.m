@@ -97,7 +97,7 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex, N
     [Datasets, ~] = sort(Datasets);
 
     Results1 = zeros(length(Datasets),1);
-    Results2 = zeros(length(Datasets),5);
+    Results2 = zeros(length(Datasets),6);
     
     for i = 1:length(Datasets)
 
@@ -106,11 +106,13 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex, N
                     disp(['Dataset being processed: ', char(Datasets(i))]);
                     DS = LoadUCRdataset(char(Datasets(i)));
 
+                    tic;
                     if DistanceIndex>=47
                         [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierSimilarity(DS, DistanceIndex, NormalizationIndex);
                     else
                         [acc,issues,zerodistances,nandistances,infdistances,complexdistances] = OneNNClassifierDissimilarity(DS, DistanceIndex, NormalizationIndex);
                     end
+                    runtimeRT = toc;
                     
                     Results1(i,1) = acc;
                     Results2(i,1) = issues;
@@ -118,6 +120,7 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex, N
                     Results2(i,3) = nandistances;
                     Results2(i,4) = infdistances;
                     Results2(i,5) = complexdistances;
+                    Results2(i,6) = runtimeRT;
    
             end
             % z-normalization
