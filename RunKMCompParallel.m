@@ -24,7 +24,7 @@ function RunKMCompParallel(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Pa
     poolobj = gcp('nocreate');
     delete(poolobj);
     
-    parpool(20);
+    parpool(22);
     
     for i = 1:length(Datasets)
         
