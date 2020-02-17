@@ -12,7 +12,7 @@ function DM = KMCompParallel_TestToTrain(X, Y, DistanceIndex, Parameter1, Parame
     DM = zeros(nrowsX,nrowsY);
 
     for i=1:nrowsX
-            %disp(i);
+            disp(i);
             tmpX = X(i,:);
             parfor j=1:nrowsY                  
                 if DistanceIndex==1
