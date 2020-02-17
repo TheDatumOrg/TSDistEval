@@ -86,7 +86,7 @@ function RunOneNNClassifier(DataSetStartIndex, DataSetEndIndex, DistanceIndex, N
         'InnerProduct', 'HarmonicMean', 'Fidelity', 'KumarHassebrook' ...
         'NCC', 'NCCu', 'NCCb', 'NCCc'];
     
-    addpath(genpath('distancemeasures/.'));
+    addpath(genpath('lockstepmeasures/.'));
     
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
     dir_struct = dir('./UCR2018/');
