@@ -39,7 +39,7 @@ function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex, NormalizationInde
                     
                     gammaValues = [0.1,0.3,0.5,0.7,0.9,1,1.3,1.5,1.7,1.9,2,3,5,7,9,11,13,15,17,20];
                     
-                    for gammaIter = 1:25
+                    for gammaIter = 1:20
 
                         
                         gammaIter
