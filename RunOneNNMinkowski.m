@@ -27,10 +27,10 @@ function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex, NormalizationInde
 
     Results = zeros(length(Datasets),3);
     
-    poolobj = gcp('nocreate');
-    delete(poolobj);
+    %poolobj = gcp('nocreate');
+    %delete(poolobj);
     
-    parpool(24);
+    %parpool(24);
 
     for i = 1:length(Datasets)
 
@@ -44,7 +44,7 @@ function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex, NormalizationInde
                     
                     gammaValues = [0.1,0.3,0.5,0.7,0.9,1,1.3,1.5,1.7,1.9,2,3,5,7,9,11,13,15,17,20];
                     
-                    parfor gammaIter = 1:20
+                    for gammaIter = 1:20
 
                         
                         gammaIter
@@ -69,7 +69,7 @@ function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex, NormalizationInde
             
     end
     
-    poolobj = gcp('nocreate');
-    delete(poolobj);
+    %poolobj = gcp('nocreate');
+    %delete(poolobj);
     
 end
