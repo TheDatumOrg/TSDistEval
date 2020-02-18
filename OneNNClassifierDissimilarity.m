@@ -153,39 +153,39 @@ function [acc,issues,zerodistances,nandistances,infdistances,complexdistances] =
             if distance==0
                 zerodistances=1;
                 issues=1;
-                disp(distance)
-                disp(id)
-                disp(i)
-                disp('*********** 0 WARNING ************')
+                %disp(distance)
+                %disp(id)
+                %disp(i)
+                %disp('*********** 0 WARNING ************')
                 
             end
             if isnan(distance)
                 nandistances=1;
                 issues=1;
-                disp(distance)
-                disp(id)
-                disp(i)
-                disp('*********** NaN WARNING ************')
+                %disp(distance)
+                %disp(id)
+                %disp(i)
+                %disp('*********** NaN WARNING ************')
             end            
 
             if isinf(distance)
                 infdistances=1;
                 issues=1;
-                disp(distance)
-                disp(id)
-                disp(i)
-                disp('*********** Inf WARNING ************')
+                %disp(distance)
+                %disp(id)
+                %disp(i)
+                %disp('*********** Inf WARNING ************')
             end
             
             if ~isreal(distance)
-                disp(distance);
+                %disp(distance);
                 distance = abs(distance);
                 complexdistances=1;
                 issues=1;
-                disp(distance)
-                disp(id)
-                disp(i)
-                disp('*********** Complex WARNING ************')
+                %disp(distance)
+                %disp(id)
+                %disp(i)
+                %disp('*********** Complex WARNING ************')
             end
             
             if distance < best_so_far
