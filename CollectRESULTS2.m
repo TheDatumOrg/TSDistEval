@@ -12,8 +12,8 @@ function CollectRESULTS2(DataSetStartIndex, DataSetEndIndex)
     % Sort Datasets
     
     [Datasets, DSOrder] = sort(Datasets);
-    for k = 1:length(Methods)
-        Results = [];
+    Results = [];
+    for k = 1:length(Methods)        
         for w = 1:length(Normalizations)
             ResultsTmp = dlmread( strcat('./RESULTS/RESULTS_RunONNC_ACCURACY_', char(Methods(k)), '_', char(Normalizations(w)), '_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)) );
             Results = [Results,ResultsTmp];        
