@@ -46,6 +46,7 @@ function acc = LOOCMinkowski(DS,param1, NormalizationIndex)
                 end
                 
                 distance = minkowski(compare_to_this,classify_this, param1);
+                distance
 
                 if distance < best_so_far
                     class = DS.TrainClassLabels(i);
@@ -54,7 +55,7 @@ function acc = LOOCMinkowski(DS,param1, NormalizationIndex)
             end
 
         end
-
+class
         if (DS.TrainClassLabels(id) == class)
             acc = acc + 1;
         end

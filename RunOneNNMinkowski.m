@@ -11,7 +11,7 @@ function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex, NormalizationInde
     % 8 - Tanh
     
     Normalizations = [cellstr('ZScoreNorm'), 'MinMaxNorm', 'UnitLengthNorm', 'MeanNorm', 'MedianNorm', 'AdaptiveNorm' ...
-        'Sigmoid', 'Tanh', 'SlidingZScore'];
+        'Sigmoid', 'Tanh'];
     
     addpath(genpath('normalizations/.'));
     
@@ -41,6 +41,7 @@ function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex, NormalizationInde
                     
                     for gammaIter = 1:25
 
+                        
                         gammaIter
                         tic;
                         acc = LOOCMinkowski(DS,gammaValues(gammaIter), NormalizationIndex);
