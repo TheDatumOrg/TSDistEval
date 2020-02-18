@@ -26,6 +26,11 @@ function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex, NormalizationInde
     addpath(genpath('lockstepmeasures/.'));
 
     Results = zeros(length(Datasets),3);
+    
+    poolobj = gcp('nocreate');
+    delete(poolobj);
+    
+    parpool(24);
 
     for i = 1:length(Datasets)
 
@@ -63,5 +68,8 @@ function RunOneNNMinkowski(DataSetStartIndex, DataSetEndIndex, NormalizationInde
    
             
     end
+    
+    poolobj = gcp('nocreate');
+    delete(poolobj);
     
 end
