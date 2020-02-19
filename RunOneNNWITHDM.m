@@ -161,12 +161,14 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     Params2 = 0;
             elseif DistanceIndex==6
                     % SINK
-                    Params = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]; 
+                    %Params = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]; 
+                    Params = 5; 
                     Params2 = 0;
             elseif DistanceIndex==7
                     % For GAK Kernel bandwidth, 26 overall
                     % 1-20, 0.01 0.05 0.1 0.25 0.5 0.75
-                    Params = [0.01,0.05,0.1,0.25,0.5,0.75,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+                    %Params = [0.01,0.05,0.1,0.25,0.5,0.75,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+                    Params = 0.01;
                     Params2 = 0;
             elseif DistanceIndex==8
                     % For LCSS delta and espilon, 40 overall
@@ -208,8 +210,8 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     % For KDTW
                     % 
                     %Params = [2^-15,2^-14,2^-13,2^-12,2^-11,2^-10,2^-9,2^-8,2^-7,2^-6,2^-5,2^-4,2^-3,2^-2,2^-1,2^0,2^1,2^2,2^3,2^4];
-                    Params = [2^-15,2^-14,2^-13,2^-12,2^-11,2^-10,2^-9,2^-8,2^-7,2^-6,2^-5,2^-4,2^-3];
-                    %Params = 2^0;
+                    %Params = [2^-15,2^-14,2^-13,2^-12,2^-11,2^-10,2^-9,2^-8,2^-7,2^-6,2^-5,2^-4,2^-3];
+                    Params = 2^-3;
                     Params2 = 0; 
             elseif DistanceIndex==14
                     % For ERP
