@@ -1,6 +1,6 @@
 function RunOneNNWITHDM(DataSetStartIndex, DataSetEndIndex, DistanceIndex)  
 
-    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWE', 'DISSIM', 'TQuEST', 'Swale', 'KDTW', 'ERP' ];
+    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWE', 'DISSIM', 'TQuEST', 'Swale', 'KDTW', 'ERP']; 
     
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
     dir_struct = dir('./UCR2018');
@@ -26,13 +26,17 @@ function RunOneNNWITHDM(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                     % Parameters based on DistanceIndex choice
                     [Params, Params2]= DistanceToParameter(DistanceIndex);
                     
-
+                    % RBF from ED
+                    Params = [2^-20,2^-19,2^-18,2^-17,2^-16,2^-15,2^-14,2^-13,2^-12,2^-11,2^-10,2^-9,2^-8,2^-7,2^-6,2^-5,2^-4,2^-3,2^-2,2^-1,2^0,2^1];
+                    
                     bestParam1=0;
                     bestParam2=0;
                     bestacc = 0;
                     for w=1:length(Params)
                         for wprime = 1:length(Params2)
-                            [DMTRAIN,~] = DistanceToDM(DistanceIndex,Datasets,i,Methods, Params(w), Params2(wprime));
+                            %[DMTRAIN,~] = DistanceToDM(DistanceIndex,Datasets,i,Methods, Params(w), Params2(wprime));
+                            [DMTRAIN,~] = DistanceToDM(DistanceIndex,Datasets,i,Methods, 0, 0);
+                            DMTRAIN = DM2KM(DMTRAIN, Params(w));
                              acc = LOOCWITHDM(DS, DMTRAIN);
                              if acc>=bestacc
                                 bestacc = acc;
@@ -43,8 +47,9 @@ function RunOneNNWITHDM(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                     end
                     
 
-                    [~,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods, bestParam1, bestParam2);
-
+                    [~,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods, 0, 0);
+                    DMTESTTOTRAIN = DM2KM(DMTESTTOTRAIN, bestParam1);
+                    
                     OneNNAcc = OneNNClassifierWITHDM(DS, DMTESTTOTRAIN);
                     
                     Results(i,1) = bestParam1;
@@ -128,8 +133,6 @@ function [DMTRAIN,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods
                     % 
                     DMTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TestToTrain.distmatrix' ) );     
-            
-            
             
             end
 
