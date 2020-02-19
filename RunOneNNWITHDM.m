@@ -84,13 +84,13 @@ function [DMTRAIN,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods
                     DMTESTTOTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) );
             elseif DistanceIndex==6
                     % SINK
-                    DMTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
-                    DMTESTTOTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) ); 
+                    DMTRAIN = dlmread( strcat( './KM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
+                    DMTESTTOTRAIN = dlmread( strcat( './KM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) ); 
             elseif DistanceIndex==7
                     % For GAK Kernel bandwidth, 26 overall
                     % 1-20, 0.01 0.05 0.1 0.25 0.5 0.75
-                    DMTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
-                    DMTESTTOTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) );
+                    DMTRAIN = dlmread( strcat( './KM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
+                    DMTESTTOTRAIN = dlmread( strcat( './KM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) );
             elseif DistanceIndex==8
                     % For LCSS delta and espilon, 40 overall
                     % 
@@ -121,8 +121,8 @@ function [DMTRAIN,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods
             elseif DistanceIndex==13
                     % For KDTW
                     % 
-                    DMTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
-                    DMTESTTOTRAIN = dlmread( strcat( './DM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TestToTrain.distmatrix' ) );     
+                    DMTRAIN = dlmread( strcat( './KM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
+                    DMTESTTOTRAIN = dlmread( strcat( './KM/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TestToTrain.distmatrix' ) );     
             elseif DistanceIndex==14
                     % For ERP
                     % 
