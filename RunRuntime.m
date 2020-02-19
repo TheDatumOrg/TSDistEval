@@ -26,7 +26,7 @@ function RunRuntime(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                     % Parameters based on DistanceIndex choice
                     [Params, Params2]= DistanceToParameter(DistanceIndex);
                   
-                    [~,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods, Params(1), Params2(1));
+                    [~,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods, Params(22), Params2(1));
                     %DMTESTTOTRAIN = DM2KM(DMTESTTOTRAIN, bestParam1);
                     
                     %OneNNAcc = OneNNClassifierWITHDM(DS, DMTESTTOTRAIN);
