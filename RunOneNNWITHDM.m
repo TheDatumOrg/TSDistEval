@@ -147,17 +147,17 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
             elseif DistanceIndex==3
                     % MSM - 10 Parameters
                     %Params = [0.01,0.1,1,10,100,0.05,0.5,5,50,500];
-                    Params = 0.5;
+                    Params = 1;
                     Params2 = 0;
             elseif DistanceIndex==4
                     % DTW - 0-20, 100 - 22 Parameters
                     %Params = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,100];
-                    Params = 10;
+                    Params = 5;
                     Params2 = 0;
             elseif DistanceIndex==5
                     % EDR - 20 Parameters
                     %Params = [0.001,0.003,0.005,0.007,0.009,0.01,0.03,0.05,0.07,0.09,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]; 
-                    Params = 0.1; 
+                    Params = 0.05; 
                     Params2 = 0;
             elseif DistanceIndex==6
                     % SINK
@@ -176,7 +176,7 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     Params = 5;
                     % epsilon
                     %Params2 = [0.001,0.003,0.005,0.007,0.009,0.01,0.03,0.05,0.07,0.09,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];
-                    Params2 = [0.2];
+                    Params2 = [0.1];
                     
             elseif DistanceIndex==9
                     % For TWED lambda and nu, 30 overall
@@ -186,7 +186,7 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     Params = [1.0];
                     % nu
                     %Params2 = [0.00001, 0.0001, 0.001, 0.01, 0.1, 1];
-                    Params2 = [0.0001];
+                    Params2 = [0.001];
             elseif DistanceIndex==10
                     % For DISSIM
                     % 
@@ -202,7 +202,7 @@ function [Params,Params2] = DistanceToParameter(DistanceIndex)
                     % For Swale
                     % 
                     %Params = [0.01,0.03,0.05,0.07,0.09,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];
-                    Params = 0.2;
+                    Params = 0.1;
                     Params2 = 0;             
             elseif DistanceIndex==13
                     % For KDTW
