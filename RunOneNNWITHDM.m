@@ -1,6 +1,6 @@
 function RunOneNNWITHDM(DataSetStartIndex, DataSetEndIndex, DistanceIndex)  
 
-    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWED', 'DISSIM', 'TQuEST', 'Swale', 'KDTW', 'ERP' ];
+    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWE', 'DISSIM', 'TQuEST', 'Swale', 'KDTW', 'ERP' ];
     
     % first 2 values are '.' and '..' - UCR Archive 2018 version has 128 datasets
     dir_struct = dir('./UCR2018');
