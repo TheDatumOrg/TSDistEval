@@ -14,7 +14,7 @@ function DM = KMComp(X, DistanceIndex, Parameter1, Parameter2)
     DM = zeros(m,m);
                         
     for i=1:m-1
-        %disp(i);
+        disp(i);
         rowi = X(i,:);
         tmpVector = zeros(1,m);
            for j=i+1:m

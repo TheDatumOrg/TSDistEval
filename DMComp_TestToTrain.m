@@ -14,7 +14,7 @@ function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
     DM = zeros(nrowsX,nrowsY);
 
     for i=1:nrowsX
-            %disp(i);
+            disp(i);
             tmpX = X(i,:);
             for j=1:nrowsY                  
                 if DistanceIndex==1
