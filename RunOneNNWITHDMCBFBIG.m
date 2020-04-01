@@ -26,7 +26,7 @@ function RunOneNNWITHDMCBFBIG(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                     
                     % RBF from ED
                     %Params = [2^-20,2^-19,2^-18,2^-17,2^-16,2^-15,2^-14,2^-13,2^-12,2^-11,2^-10,2^-9,2^-8,2^-7,2^-6,2^-5,2^-4,2^-3,2^-2,2^-1,2^0,2^1];
-                    %Params = [2^1];
+                    Params = [2^1];
                     k=1;
                     for w=10:15:1000
                        disp(k); 
