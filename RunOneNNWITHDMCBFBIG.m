@@ -29,7 +29,7 @@ function RunOneNNWITHDMCBFBIG(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                     %Params = [2^1];
                     k=1;
                     for w=10:15:1000
-                        
+                       disp(k); 
                     [~,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods, Params(1), Params2(1));
                     %DMTESTTOTRAIN = DM2KM(DMTESTTOTRAIN, bestParam1);
                     
