@@ -18,7 +18,7 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
            for j=i+1:m
                 rowj = X(j,:); 
                 if DistanceIndex==1
-                    tmpVector(j) = ED(rowi,rowj);
+                    tmpVector(j) = lorentzian(rowi,rowj);
                 elseif DistanceIndex==2
                     tmpVector(j) = 1-max( NCCc(rowi,rowj));
                 elseif DistanceIndex==3
@@ -49,7 +49,7 @@ function DM = DMComp(X, DistanceIndex, Parameter1, Parameter2)
     
     for i=1:m
         if DistanceIndex==1
-            DM(i,i) = ED(X(i,:),X(i,:));
+            DM(i,i) = lorentzian(X(i,:),X(i,:));
         elseif DistanceIndex==2
             DM(i,i) = 1-max( NCCc(X(i,:),X(i,:)) );
         elseif DistanceIndex==3
