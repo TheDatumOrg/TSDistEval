@@ -51,6 +51,7 @@ end
 
 function [DMTRAIN,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods, Param1, Param2)
 
+            DMTRAIN = [];
             if DistanceIndex==1
                     %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) );
