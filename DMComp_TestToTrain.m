@@ -18,7 +18,7 @@ function DM = DMComp_TestToTrain(X,Y,DistanceIndex,Parameter1, Parameter2)
             tmpX = X(i,:);
             for j=1:nrowsY                  
                 if DistanceIndex==1
-                    DM(i,j) = ED(tmpX,Y(j,:));
+                    DM(i,j) = lorentzian(tmpX,Y(j,:));
                 elseif DistanceIndex==2
                     DM(i,j) = 1-max( NCCc(tmpX,Y(j,:)) );
                 elseif DistanceIndex==3
