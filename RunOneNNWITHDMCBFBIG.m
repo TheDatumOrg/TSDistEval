@@ -52,73 +52,73 @@ end
 function [DMTRAIN,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods, Param1, Param2)
 
             if DistanceIndex==1
-                    DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) );
             elseif DistanceIndex==2
-                    DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) );
             elseif DistanceIndex==3
                     % MSM - 10 Parameters
-                    DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) );
             elseif DistanceIndex==4
                     % DTW - 0-20, 100 - 22 Parameters
-                    DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) );
             elseif DistanceIndex==5
                     % EDR - 20 Parameters
-                    DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) );
             elseif DistanceIndex==6
                     % SINK
-                    DMTRAIN = dlmread( strcat( './KMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './KMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './KMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) ); 
             elseif DistanceIndex==7
                     % For GAK Kernel bandwidth, 26 overall
                     % 1-20, 0.01 0.05 0.1 0.25 0.5 0.75
-                    DMTRAIN = dlmread( strcat( './KMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './KMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './KMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_',num2str(Param2), '_TestToTrain.distmatrix' ) );
             elseif DistanceIndex==8
                     % For LCSS delta and espilon, 40 overall
                     % 
                     % delta
-                    DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TestToTrain.distmatrix' ) );                  
             elseif DistanceIndex==9
                     % For TWED lambda and nu, 30 overall
                     % 
                     % lambda
-                    DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TestToTrain.distmatrix' ) );
             elseif DistanceIndex==10
                     % For DISSIM
                     % 
-                    DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TestToTrain.distmatrix' ) );
             elseif DistanceIndex==11
                     % For TQUEST
                     % 
-                    DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TestToTrain.distmatrix' ) );      
             elseif DistanceIndex==12
                     % For Swale
                     % 
-                    DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TestToTrain.distmatrix' ) );     
             elseif DistanceIndex==13
                     % For KDTW
                     % 
-                    DMTRAIN = dlmread( strcat( './KMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './KMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './KMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TestToTrain.distmatrix' ) );     
             elseif DistanceIndex==14
                     % For ERP
                     % 
-                    DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TestToTrain.distmatrix' ) );     
            elseif DistanceIndex==15
                     % For Lorentzian
                     % 
-                    DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
+                    %DMTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_Train.distmatrix' ) );
                     DMTESTTOTRAIN = dlmread( strcat( './DMCBFBIG/',char(Datasets(i)),'/', char(Datasets(i)),'_',char(Methods(DistanceIndex)),'_', num2str(Param1),'_', num2str(Param2), '_TestToTrain.distmatrix' ) );     
             
             end
