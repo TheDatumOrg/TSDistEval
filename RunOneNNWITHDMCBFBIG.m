@@ -32,14 +32,14 @@ function RunOneNNWITHDMCBFBIG(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                        disp(k); 
                     [~,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods, Params(1), Params2(1));
 
-                    DMTESTTOTRAIN = DM2KM(DMTESTTOTRAIN, 2);
+                    %DMTESTTOTRAIN = DM2KM(DMTESTTOTRAIN, 2);
                     
                     Results(i,k) = 1 - OneNNClassifierWITHDMCBFBIG(DS, DMTESTTOTRAIN, w);
                     k=k+1;
                       
                     end
                     
-                    dlmwrite( strcat('./RunOneNNWITHDMCBFBIG/', 'RESULTS_RunOneNNWITHDMCBFBIG_', char(Methods(DistanceIndex))), Results, 'delimiter', '\t');
+                    dlmwrite( strcat('./RunOneNNWITHDMCBFBIG/', 'RESULTS_RunOneNNWITHDMCBFBIG_', char(Methods(DistanceIndex))), Results, 'delimiter', ',');
    
             end
             
