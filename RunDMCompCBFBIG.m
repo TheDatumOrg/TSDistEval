@@ -10,7 +10,7 @@ function RunDMCompCBFBIG(DataSetStartIndex, DataSetEndIndex, DistanceIndex, Para
     % 7 - TWE           30 Parameters (5 x 6)
     % 8 - Swale         15 Parameters (15 x 1)
     % 9 - ERP           2 Empty Parameters
-    Methods = [cellstr('Lorentzian'), 'SBD', 'MSM', 'DTW', 'EDR', 'LCSS', 'TWE', 'Swale', 'ERP'];
+    Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'LCSS', 'TWE', 'Swale', 'ERP'];
 
     Datasets = [cellstr('CBFBIG')];
     
