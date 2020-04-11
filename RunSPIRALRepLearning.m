@@ -23,8 +23,8 @@ function RunSPIRALRepLearning(DataSetStartIndex, DataSetEndIndex)
                     ZRep = SPIRALRepLearning(DS, NumOfSamples); 
                     RTResult = toc;
                     
-                    dlmwrite( strcat( 'SPIRALREPRESENTATIONS','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '.Zrep'), ZRep, 'delimiter', '\t');
-                    dlmwrite( strcat( 'SPIRALREPRESENTATIONS-RT','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '.RT'), RTResult, 'delimiter', '\t');
+                    dlmwrite( strcat( 'SPIRALREPRESENTATIONS','/',char(Datasets(i)),'/','SPIRALREPRESENTATIONS', '.Zrep'), ZRep, 'delimiter', '\t');
+                    dlmwrite( strcat( 'SPIRALREPRESENTATIONS-RT','/',char(Datasets(i)),'/','SPIRALREPRESENTATIONS', '.RT'), RTResult, 'delimiter', '\t');
                                    
                                     
             end
