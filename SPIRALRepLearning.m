@@ -25,7 +25,7 @@ end
 [D,Omega,d]=construct_sparse(X,n,m);
 X0=zeros(n,coeffs);
 options.maxiter=20;
-tic;X_train=matrix_completion_sparse_mex(D,d,Omega,X0,options);toc
+X_train=matrix_completion_sparse_mex(D,d,Omega,X0,options);
 
 Train=[X_train(1:size(Train,1),:)];
 Test=[X_train(size(Train,1)+1:size(X_train,1),:)];

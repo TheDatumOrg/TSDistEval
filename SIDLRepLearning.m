@@ -1,4 +1,4 @@
-function [ZRep,learn_time,fit_time] = SIDLRepLearning(dataset_name, DS, K, lambda, r)  
+function [ZRep] = SIDLRepLearning(dataset_name, DS, K, lambda, r)  
 % dataset_name is dataset name
 % DS is the dataset structure
 % K is number of coefficients [10, 20, 50]
@@ -34,18 +34,18 @@ maxInnerIter = 3;
       runid = strcat(dataset_name, '_l_', num2str(lambda), '_K_', num2str(K), '_q_', num2str(q));
 
       % train SIDL on training set
-      tic;
+      %tic;
       [S, A, Offsets] = USIDL(train_X, train_y, lambda, K, q, c, epsilon, maxIter, maxInnerIter, runid);
 
-      learn_time = toc;
+      %learn_time = toc;
       %fprintf('\n##### TRAINING TIME on TRAIN SET (K=%f, lambda=%f, r=%f): %f secs.\n\n', K, lambda, r, learn_time);
 
       % learn sparse coding on test set with dictionary learned from training set
       A_test = A_rand_init;
       Offsets_test = randi([0, p-q], n_test, K);
-      tic;
+      %tic;
       [A_test, Offsets_test, F_all] = update_A_par(test_X, S, A_test, Offsets_test, lambda, maxIter, epsilon);
-      fit_time = toc;
+      %fit_time = toc;
       
       % get reconstruciton for SIDL
       test_recons_error_sidl = unsup_obj(test_X, S, A_test, Offsets_test, 0) / n_test;
