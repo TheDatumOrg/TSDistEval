@@ -39,7 +39,7 @@ function RunOneNNWITHDMStarLightCurves(DataSetStartIndex, DataSetEndIndex, Dista
                       
                     end
                     
-                    dlmwrite( strcat('./RunOneNNWITHDMStarLightCurves/', 'RESULTS_RunOneNNWITHDMStarLightCurves_', char(Methods(DistanceIndex))), Results, 'delimiter', ',');
+                    dlmwrite( strcat('./RunOneNNWITHDMStarLightCurves/', 'RESULTS_RunOneNNWITHDMStarLightCurves_', char(Datasets(i)) ,'_',char(Methods(DistanceIndex))), Results, 'delimiter', ',');
    
             end
             
