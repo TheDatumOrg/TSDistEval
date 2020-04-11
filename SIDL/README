@@ -1,0 +1,23 @@
+Code for Efficient Shift-Invariant Dictionary Learning
+
+Guoqing Zheng, 2016
+
+1. This package provides a sample implementation of the SIDL model proposed in [1]. The main entry for the model
+   is the function defined in "USIDL.m" (See the comment in the file for detailed parameter explanations);
+
+2. An example main file "main_example.m" to run the model on the Trace data set is also provided. 
+   The Trace data set is kindly contributed by [2];
+
+3. This package (excluding the Trace data set) is released under the MIT license (See LICENSE for details); 
+
+4. If you find this package useful, please cite [1] in your work.
+
+Reference:
+
+[1] Efficient Shift-Invariant Dictionary Learning
+    Guoqing Zheng, Yiming Yang, Jaime Carbonell 
+    In proceedings of the 22nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2016), San Francisco, CA.
+
+[2] The UCR Time Series Classification Archive
+    Yanping Chen, Eamonn Keogh, Bing Hu, Nurjahan Begum, Anthony Bagnall, Abdullah, Mueen and Gustavo, Batista.
+    http://www.cs.ucr.edu/~eamonn/time_series_data/
