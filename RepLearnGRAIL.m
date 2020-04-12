@@ -26,7 +26,7 @@ for i=1:nrowsDic
 end
         
 for i=1:nrowsX
-    disp(i);
+    %disp(i);
        for j=1:nrowsDic
            E(i,j) = SINK(X(i,:),Dictionary(j,:),gamma);
            %DistComp = DistComp + 1;
