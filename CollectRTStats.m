@@ -1,4 +1,4 @@
-function CollectRTStats(DataSetStartIndex, DataSetEndIndex, DistanceIndex)  
+function CollectRTStats(DataSetStartIndex, DataSetEndIndex)  
 
    % Methods = [cellstr('ED'), 'SBD', 'MSM', 'DTW', 'EDR', 'SINK', 'GAK', 'LCSS', 'TWE', 'DISSIM', 'TQuEST', 'Swale', 'KDTW', 'ERP'];
 
@@ -21,7 +21,7 @@ function CollectRTStats(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                     %DS = LoadUCRdataset(char(Datasets(i)));
                     %disp([char(Datasets(i)),',',num2str(length(DS.ClassNames)),',',num2str(DS.TrainInstancesCount),',',num2str(DS.TestInstancesCount),',',num2str(length(DS.Train(1,:)))]);
                     
-                    ResultsTmp = dlmread( strcat( 'SPIRALREPRESENTATIONS-RT','/',char(Datasets(i)),'/','SPIRALREPRESENTATIONS', '.RT') );
+                    ResultsTmp = dlmread( strcat( 'SIDLREPRESENTATIONS-RT','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.1) ,'.RT') );
                                         
                     %ResultsTmp = dlmread( strcat( 'RunClassificationZREP/RunClassificationZREP_FULLKM_Z20_KShape_', num2str(i),'.results') );
                     %ResultsTmp = dlmread( strcat('RunOneNNTOPFFTED/', 'RunOneNNTOPFFTED_Dataset_', num2str(i), '_NumOfCoeff_',num2str(10)) );
@@ -33,7 +33,7 @@ function CollectRTStats(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
            
     end
             
-    dlmwrite( strcat( './CollectRTStats_SPIRAL_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
+    dlmwrite( strcat( './CollectRTStats_SIDL_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
     
     %dlmwrite( strcat( '/rigel/dsi/users/ikp2103/JOPA/GRAIL2/RESULTS/RunOneNNTOPFFTED_NumOfCoeff_10_', num2str(DataSetStartIndex), '_', num2str(DataSetEndIndex)), Results, 'delimiter', ',');
     
