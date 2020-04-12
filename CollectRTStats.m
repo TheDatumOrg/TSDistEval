@@ -26,7 +26,7 @@ function CollectRTStats(DataSetStartIndex, DataSetEndIndex, DistanceIndex)
                     %ResultsTmp = dlmread( strcat( 'RunClassificationZREP/RunClassificationZREP_FULLKM_Z20_KShape_', num2str(i),'.results') );
                     %ResultsTmp = dlmread( strcat('RunOneNNTOPFFTED/', 'RunOneNNTOPFFTED_Dataset_', num2str(i), '_NumOfCoeff_',num2str(10)) );
                                         
-                    Results(i,:) = ResultsTmp(i,:);
+                    Results(i,:) = ResultsTmp;
                     
             end
                     
