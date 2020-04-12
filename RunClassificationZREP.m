@@ -25,14 +25,15 @@ function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)
 
                     
     
-                    LeaveOneOutAccuracies = zeros(length(Datasets),20);
+                    LeaveOneOutAccuracies = zeros(length(Datasets),22);
 
-                    gammaValues =[1e-3 3e-3 1e-2 3e-2 0.10 0.14 0.19 0.28 0.39 0.56 0.79 1.12 1.58 2.23 3.16 4.46 6.30 8.91 10 31.62 1e2 3e2 1e3];
+                    %gammaValues =[1e-3 3e-3 1e-2 3e-2 0.10 0.14 0.19 0.28 0.39 0.56 0.79 1.12 1.58 2.23 3.16 4.46 6.30 8.91 10 31.62 1e2 3e2 1e3];
+                    gammaValues =[1e-3 3e-3 1e-2 3e-2 0.10 0.14 0.28 0.39 0.56 0.79 1.12 1.58 2.23 3.16 4.46 6.30 8.91 10 31.62 1e2 3e2 1e3];
                     
                     
 
 
-                    for gammaIter = 1:23
+                    for gammaIter = 1:22
                     
                     %if gammaIter==1
                     %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.1) ,'.Zrep')  );
