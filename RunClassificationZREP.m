@@ -35,7 +35,7 @@ function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)
                     
                     %[MaxLeaveOneOutAcc,MaxLeaveOneOutAccGamma] = max(LeaveOneOutAccuracies(i,:));
                     
-                    ZRepresentation = dlmread( strcat( 'SPIRALREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SPIRALREPRESENTATIONS', '.Zrep') );
+                    ZRepresentation = dlmread( strcat( 'SPIRALREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '.Zrep') );
                    
                     %ZRepresentation = dlmread( strcat( 'REPRESENTATIONSFULLKM/',char(Datasets(i)),'/','RepresentationFULLKM_', num2str(gammaValues(MaxLeaveOneOutAccGamma)) ,'.Z20' ));
                     %ZRepresentation = dlmread( strcat( 'REPRESENTATIONSGamma', num2str(gammaValues(MaxLeaveOneOutAccGamma)),'/',char(Datasets(i)),'/','RepLearningFixedSamples', '_', char(Methods(Method)), '_', num2str('1') ,'.Ztop10'));
