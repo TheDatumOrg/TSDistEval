@@ -10,8 +10,8 @@ function acc = OneNNClassifierZREP(DS,ZRepresentation)
         %classify_this = DS.Test(id,:);
         classify_this = ZRepTest(id,:);
         
-        %best_so_far = inf;
-        best_so_far = 0;
+        best_so_far = inf;
+        %best_so_far = 0;
         for i = 1 : DS.TrainInstancesCount
             
             %compare_to_this = DS.Train(i,:);
@@ -21,7 +21,7 @@ function acc = OneNNClassifierZREP(DS,ZRepresentation)
 
             
            
-            if distance > best_so_far
+            if distance < best_so_far
                 class = DS.TrainClassLabels(i);
                 best_so_far = distance;
             end
