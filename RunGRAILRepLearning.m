@@ -12,6 +12,7 @@ function RunGRAILRepLearning(DataSetStartIndex, DataSetEndIndex, Method, gamma)
 
     addpath(genpath('lockstepmeasures/.'));
     addpath(genpath('kernelmeasures/.'));
+    addpath(genpath('slidingmeasures/.'));
     
     for i = 1:length(Datasets)
 
