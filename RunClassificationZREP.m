@@ -14,6 +14,8 @@ function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)
     addpath(genpath('slidingmeasures/.'));
     addpath(genpath('elasticmeasures/.'));
     
+    
+    Results = zeros(length(Datasets),1);
     for i = 1:length(Datasets)
 
             if (i>=DataSetStartIndex & i<=DataSetEndIndex)
@@ -21,7 +23,7 @@ function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)
                     disp(['Dataset being processed: ', char(Datasets(i))]);
                     DS = LoadUCRdataset(char(Datasets(i)));
 
-                    Results = zeros(length(Datasets),1);
+                    
     
                     %LeaveOneOutAccuracies = zeros(length(Datasets),20);
 
