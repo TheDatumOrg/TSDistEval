@@ -10,6 +10,10 @@ function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)
     
     [Datasets, DSOrder] = sort(Datasets);    
     
+    addpath(genpath('lockstepmeasures/.'));
+    addpath(genpath('slidingmeasures/.'));
+    addpath(genpath('elasticmeasures/.'));
+    
     for i = 1:length(Datasets)
 
             if (i>=DataSetStartIndex & i<=DataSetEndIndex)
