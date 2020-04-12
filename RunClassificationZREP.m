@@ -1,4 +1,4 @@
-function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex, Method)  
+function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)  
   
     Methods = [cellstr('Random'), 'KShape'];
     
