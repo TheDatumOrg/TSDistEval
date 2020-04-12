@@ -11,7 +11,7 @@ function [KMat, user_dtw_runtime] = dtw_similarity_cell(newX, baseX)
     n = size(baseX,1);
     
     nrm_newX = zeros(m,1);
-    tic;
+    %tic;
     for i=1:m
 		nrm_newX(i)=dtw_c(newX(i,:)',zeros(1));
     end
@@ -19,11 +19,11 @@ function [KMat, user_dtw_runtime] = dtw_similarity_cell(newX, baseX)
     for i=1:n
 		nrm_baseX(i)=dtw_c(baseX{i}',zeros(1));
     end
-    toc
+    %toc
     
     KMat = zeros(m,n);
     user_dtw_runtime = 0;
-    tic;
+    %tic;
     for i = 1 : m
         Ei = zeros(1,n);
         data1 = newX(i,:)';
@@ -36,11 +36,12 @@ function [KMat, user_dtw_runtime] = dtw_similarity_cell(newX, baseX)
             dtw_telapsed = tic;
             dist = dtw_c(data1, data2, wSize);% window constraints
 %             dist = dtw_c(newX(i,:)', baseX(j,:)');% no constraints
-            user_dtw_runtime = user_dtw_runtime + toc(dtw_telapsed);
+            %user_dtw_runtime = user_dtw_runtime + toc(dtw_telapsed);
+            user_dtw_runtime = 0;
             Ei(j) = dist;
         end
         KMat(i,:) = Ei;
     end
-    toc;
+    %toc;
     
 end

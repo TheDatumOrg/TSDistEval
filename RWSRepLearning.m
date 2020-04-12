@@ -21,7 +21,7 @@ function ZRep = RWSRepLearning(DS,sigma,R,DMin,DMax)
 
     % generate random time series with variable length, where each value in
     % random series is sampled from Gaussian distribution parameterized by sigma. 
-    timer_start = tic;
+    %timer_start = tic;
     rng('default')
     sampleX = cell(R,1);
     for i=1:R

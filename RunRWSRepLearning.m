@@ -33,14 +33,14 @@ function RunRWSRepLearning(DataSetStartIndex, DataSetEndIndex, sigma)
                     
                     tic;
                     % Without Tuning for Clustering
-                    ZRepUNSup = RWSRepLearning(DS,sigma,NumOfSamples,1,25);
+                    ZRepUNSup = RWSRepLearning(DS,sigma,NumOfSamples,1,100);
                     %ZRepUNSup = RWSRepLearning(DS,1000,NumOfSamples,1,25);
                     
                     RTResult = toc;
                     %dlmwrite( strcat( 'RWSREPRESENTATIONS','/',char(Datasets(i)),'/','RWS_Supervised', '.Zrep'), ZRepSup, 'delimiter', '\t');
                     
-                    dlmwrite( strcat( 'RWSREPRESENTATIONS','/',char(Datasets(i)),'/','RWS_UNSupervised_Sigma_',num2str(sigma),'_DMax25', '.Zrep'), ZRepUNSup, 'delimiter', '\t');
-                    dlmwrite( strcat( 'RWSREPRESENTATIONS-RT','/',char(Datasets(i)),'/','RWS_UNSupervised_Sigma_',num2str(sigma),'_DMax25', '.RT'), RTResult, 'delimiter', '\t');
+                    dlmwrite( strcat( 'RWSREPRESENTATIONS','/',char(Datasets(i)),'/','RWS_UNSupervised_Sigma_',num2str(sigma),'_DMax100', '.Zrep'), ZRepUNSup, 'delimiter', '\t');
+                    dlmwrite( strcat( 'RWSREPRESENTATIONS-RT','/',char(Datasets(i)),'/','RWS_UNSupervised_Sigma_',num2str(sigma),'_DMax100', '.RT'), RTResult, 'delimiter', '\t');
                            
                                    
                                     
