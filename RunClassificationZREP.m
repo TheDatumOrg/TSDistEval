@@ -25,33 +25,34 @@ function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)
 
                     
     
-                    LeaveOneOutAccuracies = zeros(length(Datasets),9);
+                    LeaveOneOutAccuracies = zeros(length(Datasets),20);
 
-                    gammaValues = 1:9;
+                    gammaValues = 1:20;
 
-                    for gammaIter = 1:9
+                    for gammaIter = 1:20
                     
-                    if gammaIter==1
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.1) ,'.Zrep')  );
-                    elseif gammaIter==2
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.25) ,'.Zrep')  );
-                    elseif gammaIter==3
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.5) ,'.Zrep')  );
-                    elseif gammaIter==4
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(1), '_R_', num2str(0.1) ,'.Zrep')  );
-                    elseif gammaIter==5
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(1), '_R_', num2str(0.25) ,'.Zrep')  );
-                    elseif gammaIter==6
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(1), '_R_', num2str(0.5) ,'.Zrep')  );
-                    elseif gammaIter==7
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.1) ,'.Zrep')  );
-                    elseif gammaIter==8
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.25) ,'.Zrep')  );
-                    elseif gammaIter==9
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.5) ,'.Zrep')  );
-                    end
+                    %if gammaIter==1
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.1) ,'.Zrep')  );
+                    %elseif gammaIter==2
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.25) ,'.Zrep')  );
+                    %elseif gammaIter==3
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.5) ,'.Zrep')  );
+                    %elseif gammaIter==4
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(1), '_R_', num2str(0.1) ,'.Zrep')  );
+                    %elseif gammaIter==5
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(1), '_R_', num2str(0.25) ,'.Zrep')  );
+                    %elseif gammaIter==6
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(1), '_R_', num2str(0.5) ,'.Zrep')  );
+                    %elseif gammaIter==7
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.1) ,'.Zrep')  );
+                    %elseif gammaIter==8
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.25) ,'.Zrep')  );
+                    %elseif gammaIter==9
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.5) ,'.Zrep')  );
+                    %end
                     
-                                            
+                        ZRep = dlmread( strcat( 'ALLGRAILREP-GRAIL/ALLGRAILREP/Gamma',num2str(gammaIter), '/', char(Datasets(i)),'/','RepLearningFixedSamples', '_', 'Random', '_', num2str(1) ,'.Zexact') );
+                        
                         %ZRepresentation = dlmread( strcat( 'REPRESENTATIONSFULLKM/',char(Datasets(i)),'/','RepresentationFULLKM_', num2str(gammaValues(gammaIter)) ,'.Z20' ));
                         %ZRepresentation = dlmread( strcat( 'REPRESENTATIONSGamma', num2str(gammaValues(gammaIter)),'/',char(Datasets(i)),'/','RepLearningFixedSamples', '_', char(Methods(Method)), '_', num2str('1') ,'.Ztop10'));
                         
@@ -62,28 +63,29 @@ function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)
                     
                     [MaxLeaveOneOutAcc,MaxLeaveOneOutAccGamma] = max(LeaveOneOutAccuracies(i,:));
                     
+                    ZRep = dlmread( strcat( 'ALLGRAILREP-GRAIL/ALLGRAILREP/Gamma',num2str(MaxLeaveOneOutAccGamma), '/', char(Datasets(i)),'/','RepLearningFixedSamples', '_', 'Random', '_', num2str(1) ,'.Zexact') );
+                       
                     
                     
-                    
-                    if MaxLeaveOneOutAccGamma==1
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.1) ,'.Zrep')  );
-                    elseif MaxLeaveOneOutAccGamma==2
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.25) ,'.Zrep')  );
-                    elseif MaxLeaveOneOutAccGamma==3
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.5) ,'.Zrep')  );
-                    elseif MaxLeaveOneOutAccGamma==4
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(1), '_R_', num2str(0.1) ,'.Zrep')  );
-                    elseif MaxLeaveOneOutAccGamma==5
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(1), '_R_', num2str(0.25) ,'.Zrep')  );
-                    elseif MaxLeaveOneOutAccGamma==6
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(1), '_R_', num2str(0.5) ,'.Zrep')  );
-                    elseif MaxLeaveOneOutAccGamma==7
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.1) ,'.Zrep')  );
-                    elseif MaxLeaveOneOutAccGamma==8
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.25) ,'.Zrep')  );
-                    elseif MaxLeaveOneOutAccGamma==9
-                        ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.5) ,'.Zrep')  );
-                    end
+                    %if MaxLeaveOneOutAccGamma==1
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.1) ,'.Zrep')  );
+                    %elseif MaxLeaveOneOutAccGamma==2
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.25) ,'.Zrep')  );
+                    %elseif MaxLeaveOneOutAccGamma==3
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.5) ,'.Zrep')  );
+                    %elseif MaxLeaveOneOutAccGamma==4
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(1), '_R_', num2str(0.1) ,'.Zrep')  );
+                    %elseif MaxLeaveOneOutAccGamma==5
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(1), '_R_', num2str(0.25) ,'.Zrep')  );
+                    %elseif MaxLeaveOneOutAccGamma==6
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(1), '_R_', num2str(0.5) ,'.Zrep')  );
+                    %elseif MaxLeaveOneOutAccGamma==7
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.1) ,'.Zrep')  );
+                    %elseif MaxLeaveOneOutAccGamma==8
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.25) ,'.Zrep')  );
+                    %elseif MaxLeaveOneOutAccGamma==9
+                    %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.5) ,'.Zrep')  );
+                    %end
                     
                                         
                     %ZRepresentation = dlmread( strcat( 'SPIRALREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '.Zrep') );
@@ -100,7 +102,7 @@ function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)
                     Results(i,1) = OneNNAcc;
                     
                     %dlmwrite( strcat( 'RESULTS_RunClassificationZREP_SPIRAL_', char(Methods(Method)), '_', num2str(i),'.results'), Results, 'delimiter', '\t');
-                    dlmwrite( strcat( 'RESULTS_RunClassificationZREP_SIDL_', '.results'), Results, 'delimiter', '\t');
+                    dlmwrite( strcat( 'RESULTS_RunClassificationZREP_GRAIL_', '.results'), Results, 'delimiter', '\t');
             end
     end
     
