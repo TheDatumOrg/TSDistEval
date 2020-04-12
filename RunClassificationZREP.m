@@ -27,9 +27,12 @@ function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)
     
                     LeaveOneOutAccuracies = zeros(length(Datasets),20);
 
-                    gammaValues = 1:20;
+                    gammaValues =[1e-3 3e-3 1e-2 3e-2 0.10 0.14 0.19 0.28 0.39 0.56 0.79 1.12 1.58 2.23 3.16 4.46 6.30 8.91 10 31.62 1e2 3e2 1e3];
+                    
+                    
 
-                    for gammaIter = 1:20
+
+                    for gammaIter = 1:23
                     
                     %if gammaIter==1
                     %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(0.1), '_R_', num2str(0.1) ,'.Zrep')  );
@@ -51,8 +54,8 @@ function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)
                     %    ZRep = dlmread( strcat( 'SIDLREPRESENTATIONS-GRAIL','/',char(Datasets(i)),'/','SIDLREPRESENTATIONS', '_L_', num2str(10), '_R_', num2str(0.5) ,'.Zrep')  );
                     %end
                     
-                        ZRep = dlmread( strcat( 'ALLGRAILREP-GRAIL/ALLGRAILREP/Gamma',num2str(gammaIter), '/', char(Datasets(i)),'/','RepLearningFixedSamples', '_', 'Random', '_', num2str(1) ,'.Zexact') );
-                        
+                       % ZRep = dlmread( strcat( 'ALLGRAILREP-GRAIL/ALLGRAILREP/Gamma',num2str(gammaIter), '/', char(Datasets(i)),'/','RepLearningFixedSamples', '_', 'Random', '_', num2str(1) ,'.Zexact') );
+                        ZRep = dlmread( strcat( 'RWSREPRESENTATIONS','/',char(Datasets(i)),'/','RWS_UNSupervised_Sigma_',num2str(gammaValues(gammaIter)),'_DMax25', '.Zrep') );
                         %ZRepresentation = dlmread( strcat( 'REPRESENTATIONSFULLKM/',char(Datasets(i)),'/','RepresentationFULLKM_', num2str(gammaValues(gammaIter)) ,'.Z20' ));
                         %ZRepresentation = dlmread( strcat( 'REPRESENTATIONSGamma', num2str(gammaValues(gammaIter)),'/',char(Datasets(i)),'/','RepLearningFixedSamples', '_', char(Methods(Method)), '_', num2str('1') ,'.Ztop10'));
                         
@@ -63,8 +66,9 @@ function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)
                     
                     [MaxLeaveOneOutAcc,MaxLeaveOneOutAccGamma] = max(LeaveOneOutAccuracies(i,:));
                     
-                    ZRep = dlmread( strcat( 'ALLGRAILREP-GRAIL/ALLGRAILREP/Gamma',num2str(MaxLeaveOneOutAccGamma), '/', char(Datasets(i)),'/','RepLearningFixedSamples', '_', 'Random', '_', num2str(1) ,'.Zexact') );
-                       
+                    %ZRep = dlmread( strcat( 'ALLGRAILREP-GRAIL/ALLGRAILREP/Gamma',num2str(MaxLeaveOneOutAccGamma), '/', char(Datasets(i)),'/','RepLearningFixedSamples', '_', 'Random', '_', num2str(1) ,'.Zexact') );
+                    ZRep = dlmread( strcat( 'RWSREPRESENTATIONS','/',char(Datasets(i)),'/','RWS_UNSupervised_Sigma_',num2str(gammaValues(MaxLeaveOneOutAccGamma)),'_DMax25', '.Zrep') );
+                     
                     
                     
                     %if MaxLeaveOneOutAccGamma==1
@@ -102,7 +106,7 @@ function RunClassificationZREP(DataSetStartIndex, DataSetEndIndex)
                     Results(i,1) = OneNNAcc;
                     
                     %dlmwrite( strcat( 'RESULTS_RunClassificationZREP_SPIRAL_', char(Methods(Method)), '_', num2str(i),'.results'), Results, 'delimiter', '\t');
-                    dlmwrite( strcat( 'RESULTS_RunClassificationZREP_GRAIL_', '.results'), Results, 'delimiter', '\t');
+                    dlmwrite( strcat( 'RESULTS_RunClassificationZREP_RWS_', '.results'), Results, 'delimiter', '\t');
             end
     end
     
