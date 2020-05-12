@@ -58,25 +58,25 @@ function DM = KMNEWKernelsComp(X, DistanceIndex, Parameter1, Parameter2)
     for i=1:m
         
                 if DistanceIndex==1
-                    DM(i,i) = LinearNCCc(tmpX, X(i,:));
+                    DM(i,i) = LinearNCCc(X(i,:), X(i,:));
                 elseif DistanceIndex==2
-                    DM(i,i) = GaussianNCCc(tmpX, X(i,:), Parameter1);
+                    DM(i,i) = GaussianNCCc(X(i,:), X(i,:), Parameter1);
                 elseif DistanceIndex==3
-                    DM(i,i) = LogKernelNCCc(tmpX, X(i,:), Parameter1);
+                    DM(i,i) = LogKernelNCCc(X(i,:), X(i,:), Parameter1);
                 elseif DistanceIndex==4
-                    DM(i,i) = LogisticKernelNCCc(tmpX, X(i,:));
+                    DM(i,i) = LogisticKernelNCCc(X(i,:), X(i,:));
                 elseif DistanceIndex==5
-                    DM(i,i) = PolynomialNCCc(tmpX, X(i,:), Parameter1, Parameter2);
+                    DM(i,i) = PolynomialNCCc(X(i,:), X(i,:), Parameter1, Parameter2);
                 elseif DistanceIndex==6
-                    DM(i,i) = TanhNCCc(tmpX, X(i,:), Parameter1);
+                    DM(i,i) = TanhNCCc(X(i,:), X(i,:), Parameter1);
                 elseif DistanceIndex==7
-                    DM(i,i) = MultiQuadNCCc(tmpX, X(i,:), Parameter1);
+                    DM(i,i) = MultiQuadNCCc(X(i,:), X(i,:), Parameter1);
                 elseif DistanceIndex==8
-                    DM(i,i) = RationalQuadNCCc(tmpX, X(i,:), Parameter1);
+                    DM(i,i) = RationalQuadNCCc(X(i,:), X(i,:), Parameter1);
                 elseif DistanceIndex==9
-                    DM(i,i) = InverseMultiQuadNCCc(tmpX, X(i,:), Parameter1);
+                    DM(i,i) = InverseMultiQuadNCCc(X(i,:), X(i,:), Parameter1);
                 elseif DistanceIndex==10
-                    DM(i,i) = CauchyKernelNCCc(tmpX, X(i,:), Parameter1);
+                    DM(i,i) = CauchyKernelNCCc(X(i,:), X(i,:), Parameter1);
                 end 
         
     end
