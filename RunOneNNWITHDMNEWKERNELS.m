@@ -63,7 +63,7 @@ function RunOneNNWITHDMNEWKERNELS(DataSetStartIndex, DataSetEndIndex, DistanceIn
                     
 
                     [~,DMTESTTOTRAIN] = DistanceToDM(DistanceIndex,Datasets,i,Methods, bestParam1, bestParam2);
-                    DMTESTTOTRAIN = DM2KM(DMTESTTOTRAIN, bestParam1);
+                    %DMTESTTOTRAIN = DM2KM(DMTESTTOTRAIN, bestParam1);
                     
                     OneNNAcc = OneNNClassifierWITHDM(DS, DMTESTTOTRAIN);
                     
