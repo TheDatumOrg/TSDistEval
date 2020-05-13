@@ -76,7 +76,7 @@ function RunOneNNWITHDMNEWKERNELS(DataSetStartIndex, DataSetEndIndex, DistanceIn
    
             end
             
-            dlmwrite( strcat('RESULTS_RunOneNNWITHDMNEWKERNELS_', char(Methods(DistanceIndex)), Results, 'delimiter', '\t');
+            dlmwrite( strcat('RESULTS_RunOneNNWITHDMNEWKERNELS_', char(Methods(DistanceIndex))), Results, 'delimiter', '\t');
    
     end
     
