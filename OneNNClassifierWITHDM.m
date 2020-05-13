@@ -4,8 +4,8 @@ function acc = OneNNClassifierWITHDM(DS, DMTESTTOTRAIN)
     
     for id = 1 : DS.TestInstancesCount
 
-        %best_so_far = inf;
-        best_so_far = -99999999999;
+        best_so_far = inf;
+        %best_so_far = -99999999999;
         
         for i = 1 : DS.TrainInstancesCount
             
@@ -14,7 +14,7 @@ function acc = OneNNClassifierWITHDM(DS, DMTESTTOTRAIN)
             distance = DMTESTTOTRAIN(id, i);
             
 
-            if distance > best_so_far
+            if distance < best_so_far
                 class = DS.TrainClassLabels(i);
                 best_so_far = distance;
             end
