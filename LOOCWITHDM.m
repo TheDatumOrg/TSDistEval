@@ -4,8 +4,8 @@ function acc = LOOCWITHDM(DS, DMTRAIN)
     
     for id = 1 : DS.TrainInstancesCount
 
-        best_so_far = inf;
-        %best_so_far = -999999999999;
+        %best_so_far = inf;
+        best_so_far = -999999999999;
 
         for i = 1 : DS.TrainInstancesCount
 
@@ -14,7 +14,7 @@ function acc = LOOCWITHDM(DS, DMTRAIN)
                 distance = DMTRAIN(i, id);
                 
 
-                if distance < best_so_far
+                if distance > best_so_far
                     class = DS.TrainClassLabels(i);
                     best_so_far = distance;
                 end
