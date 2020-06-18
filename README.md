@@ -1,4 +1,4 @@
-# Comprehensive Study of Time-Series Distance Measures
+# A Comprehensive Study of Time-Series Distance Measures
 
 Code for Paparrizos et al, "Debunking Four Long-Standing Misconceptions of Time-Series Distance Measures," ACM SIGMOD 2020
 
